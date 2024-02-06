@@ -2,7 +2,7 @@ import React from 'react'
 
 const Input = ({ type='text', title, value, onChange, isRequire, className, classNameInput, disabled, id, htmlFor }) => {
   return (
-    <div className={`group relative z-0 w-full h-9 ${className}`}>
+    <div className={`group relative z-0 w-full h-9 rounded-md border border-gray-300 ${className}`}>
       <input
         id={id}
         disabled={disabled}
