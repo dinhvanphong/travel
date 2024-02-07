@@ -5,44 +5,45 @@ const TableBlogList = () => {
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-          <tr>
-            <th scope="col" className="px-6 py-3">
-                Product name
+          <tr className='grid justify-items-stretch grid-cols-12'>
+            <th className="px-6 py-3 col-span-3">
+                Tiêu đề
             </th>
-            <th scope="col" className="px-6 py-3">
-                Color
+            <th className="px-6 py-3 col-span-3">
+                Mô tả
             </th>
-            <th scope="col" className="px-6 py-3">
-                Category
+            <th className="px-6 py-3 col-span-2">
+                Thời gian
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th className="px-6 py-3 col-span-2">
                 Price
             </th>
-            <th scope="col" className="px-6 py-3">
-              <span className="sr-only">Edit</span>
+            <th className="px-6 py-3 col-span-2">
+              <span className="sr-only"></span>
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr className="bg-white border-b  hover:bg-gray-50 ">
-            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                Apple MacBook Pro
+          <tr className="grid grid-cols-12 bg-white border-b hover:bg-gray-50 w-full ">
+            <th className="col-span-3 px-6 py-4 font-medium text-gray-900 whitespace-wrap">
+                Apple MacBook Pro Apple MacBook Pro Apple MacBook Pro Apple MacBook
             </th>
-            <td className="px-6 py-4">
+            <td className="col-span-3 px-6 py-4">
                 Silver
             </td>
-            <td className="px-6 py-4">
+            <td className="col-span-2 px-6 py-4">
                 Laptop
             </td>
-            <td className="px-6 py-4">
+            <td className="col-span-2 px-6 py-4">
                 $2999
             </td>
-            <td className="px-6 py-4 text-right">
-              <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+            <td className="col-span-2 px-6 py-4 text-right">
+              <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Sửa</a>
+              <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Xóa</a>
             </td>
           </tr>
-          <tr className="bg-white border-b  hover:bg-gray-50 ">
-            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+          {/* <tr className="bg-white border-b  hover:bg-gray-50 ">
+            <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                 Microsoft Surface Pro
             </th>
             <td className="px-6 py-4">
@@ -57,7 +58,7 @@ const TableBlogList = () => {
             <td className="px-6 py-4 text-right">
               <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
             </td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
     </div>
