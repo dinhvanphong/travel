@@ -12,53 +12,36 @@ const TableBlogList = () => {
             <th className="px-6 py-3 col-span-3">
                 Mô tả
             </th>
-            <th className="px-6 py-3 col-span-2">
+            <th className="px-6 py-3 col-span-3">
                 Thời gian
             </th>
             <th className="px-6 py-3 col-span-2">
                 Price
             </th>
-            <th className="px-6 py-3 col-span-2">
+            <th className="px-6 py-3 col-span-1">
               <span className="sr-only"></span>
             </th>
           </tr>
         </thead>
         <tbody>
           <tr className="grid grid-cols-12 bg-white border-b hover:bg-gray-50 w-full ">
-            <th className="col-span-3 px-6 py-4 font-medium text-gray-900 whitespace-wrap">
+            <th className="col-span-3 px-6 py-4 font-medium text-gray-900 whitespace-wrap truncate">
                 Apple MacBook Pro Apple MacBook Pro Apple MacBook Pro Apple MacBook
             </th>
-            <td className="col-span-3 px-6 py-4">
-                Silver
+            <td className="col-span-3 px-6 py-4 truncate">
+                Silver Apple MacBook Pro Apple MacBook Pro Apple MacBook Pro Apple MacBook
             </td>
-            <td className="col-span-2 px-6 py-4">
+            <td className="col-span-3 px-6 py-4 truncate">
                 Laptop
             </td>
-            <td className="col-span-2 px-6 py-4">
+            <td className="col-span-2 px-6 py-4 truncate">
                 $2999
             </td>
-            <td className="col-span-2 px-6 py-4 text-right">
+            <td className="col-span-1 px-6 py-4 text-right">
               <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Sửa</a>
               <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Xóa</a>
             </td>
           </tr>
-          {/* <tr className="bg-white border-b  hover:bg-gray-50 ">
-            <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                Microsoft Surface Pro
-            </th>
-            <td className="px-6 py-4">
-                White
-            </td>
-            <td className="px-6 py-4">
-                Laptop PC
-            </td>
-            <td className="px-6 py-4">
-                $1999
-            </td>
-            <td className="px-6 py-4 text-right">
-              <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-            </td>
-          </tr> */}
         </tbody>
       </table>
     </div>
