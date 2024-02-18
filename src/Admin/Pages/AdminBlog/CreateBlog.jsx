@@ -1,18 +1,27 @@
-import React, { useRef, useState } from 'react'
-import { createNewBlogAPI } from './../../../apis/index'
+import { useRef, useState } from 'react'
+// import { createNewBlogAPI } from '~/apis/index'
+import { createBlogApi } from '~/redux/apiRequest'
+import { useDispatch} from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+// import jwt_decode from 'jwt-decode'
 
-import TextArea from '../../component/TextArea/TextArea'
+import TextArea from '~/Admin/component/TextArea/TextArea'
 import axios from 'axios'
+
 const AdminBlog = () => {
-  const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  // let axiosJWT = axios.create()
+
   const inputRef = useRef()
+  const [loading, setLoading] = useState(false)
   const [blog, setBlog] = useState({
     title:'',
     time: '',
     description: '',
     note: '',
-    imgList: ''
+    imgList: []
   })
 
   const uploadFiles =async ( files ) => {
@@ -64,18 +73,11 @@ const AdminBlog = () => {
       setLoading(false)
       return
     }
-    await createNewBlogAPI(formData)
-      .then((res) => {
-        console.log(res)
-        setLoading(false)
-        toast.success('Tạo mới bài viết thành công!')
-      })
-      .catch((error) => {
-        console.log(error)
-        toast.error('Tạo bài viết thất bại!')
-        setLoading(false)
-      })
+    createBlogApi(formData, dispatch, navigate)
+    setLoading(false)
   }
+
+
   return (
     <div className='w-[80%] px-5 py-5 h-[100vh] overflow-auto'>
       <h1 className='text-center text-2xl font-bold text-gray-800 p-[10px]'>Tạo bài viết mới</h1>

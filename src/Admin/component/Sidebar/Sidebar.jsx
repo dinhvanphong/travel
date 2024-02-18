@@ -1,12 +1,15 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 import { AiFillEdit } from 'react-icons/ai'
 import { FaTableList } from 'react-icons/fa6'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
 import { MdSwitchAccount } from 'react-icons/md'
 
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { logOutApi } from '~/redux/apiRequest'
+import { createAxios } from '~/createInstance'
+import { logoutSuccess } from '~/redux/authSlice'
 
 const dataMenu = [
   {
@@ -37,7 +40,14 @@ const Sidebar = () => {
   // const [user, setUser] = useState(true)
 
   const user = useSelector((state) => state.auth.login.currentUser)
-
+  // const accessToken = user?.accessToken
+  const id = user?._id
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  // let axiosJWT = createAxios(user, dispatch, logoutSuccess)
+  const handleLogout = () => {
+    logOutApi(dispatch, id, navigate)
+  }
   return (
     <aside id="default-sidebar" className="w-[20%] h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
       <div className="relative h-full px-3 py-4 overflow-y-auto bg-gray-800">
@@ -56,16 +66,16 @@ const Sidebar = () => {
             </li>
           ))}
         </ul>
-        <div className='absolute bottom-9 left-0 right-0 text-white'>
+        <div className='absolute bottom-10 left-0 right-0 text-white'>
           {user
             ?
-            <div>
-              <p>Hi, <span>{user.username}</span>!</p>
-              <button>Đăng xuất</button>
+            <div className='flex flex-col justify-center items-center'>
+              <p className='text-xl'>Hi, <span>{user.username}</span>!</p>
+              <button className='bg-slate-600 px-3 py-1 rounded-md mt-3 hover:bg-slate-500 duration-200' onClick={handleLogout}>Đăng xuất</button>
             </div>
             :
-            <div>
-              <p>Bạn chưa đăng nhập</p>
+            <div className='flex justify-center text-xl'>
+              <p>Bạn chưa đăng nhập!</p>
             </div>
           }
 

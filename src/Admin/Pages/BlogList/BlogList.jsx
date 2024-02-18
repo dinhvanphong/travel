@@ -1,5 +1,5 @@
 import React from 'react'
-import TableBlogList from '../AdminBlog/TableBlogList/TableBlogList'
+import TableBlogList from '~/Admin/Pages/AdminBlog/TableBlogList/TableBlogList'
 
 const BlogList = () => {
   return (
