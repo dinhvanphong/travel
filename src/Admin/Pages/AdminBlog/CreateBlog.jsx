@@ -16,13 +16,21 @@ const AdminBlog = () => {
 
   const inputRef = useRef()
   const [loading, setLoading] = useState(false)
+  // const [valueChecked, setValueChecked] = useState('Miền Bắc')
   const [blog, setBlog] = useState({
     title:'',
     time: '',
     description: '',
     note: '',
+    zones: 'Miền Bắc',
     imgList: []
   })
+
+  // const handleRadioButton = (value) => {
+  //   setValueChecked(value)
+  // }
+  // console.log(valueChecked)
+  console.log(blog)
 
   const uploadFiles =async ( files ) => {
     if (files.length > 0) {
@@ -66,6 +74,7 @@ const AdminBlog = () => {
       time: blog.time,
       description: blog.description,
       note: blog.note,
+      zones: blog.zones,
       imgList: blog.imgList
     }
     if (blog.imgList.length <= 0) {
@@ -85,14 +94,14 @@ const AdminBlog = () => {
         <div className="grid gap-6 mb-6 grid-cols-2">
           <TextArea
             title='Tiêu đề của bài viết'
-            placeholder='Viết tiêu đề của bạn tại đây...'
+            placeholder='Viết tiêu đề của bài viết tại đây...'
             rows='3'
             value={blog.title}
             onChange={(e) => setBlog({ ...blog, title: e.target.value })}
           />
           <TextArea
             title='Thời gian'
-            placeholder='Viết thời gian của bạn tại đây...'
+            placeholder='Thời điểm đẹp nhất để đến địa điểm này?'
             rows='3'
             value={blog.time}
             onChange={(e) => setBlog({ ...blog, time: e.target.value })}
@@ -101,7 +110,7 @@ const AdminBlog = () => {
         <div className="mb-6">
           <TextArea
             title='Mô tả'
-            placeholder='Viết mô tả của bạn tại đây...'
+            placeholder='Viết mô tả của bài viết tại đây...'
             rows='10'
             value={blog.description}
             onChange={(e) => setBlog({ ...blog, description: e.target.value })}
@@ -116,6 +125,43 @@ const AdminBlog = () => {
             onChange={(e) => setBlog({ ...blog, note: e.target.value })}
           />
         </div>
+
+        <div>
+          <p className='text-sm font-medium text-gray-900 mb-1'>Khu vực</p>
+          <div className="flex flex-wrap mb-6">
+            <div className="flex items-center me-4">
+              <input
+                id="red-radio"
+                type="radio"
+                value="Miền Bắc"
+                checked={blog.zones === 'Miền Bắc'}
+                onChange={() => setBlog({ ...blog, zones:'Miền Bắc' })}
+                name="colored-radio"
+                className="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500"
+              />
+              <label htmlFor="red-radio" className="ms-2 text-sm font-medium text-gray-500">Miền Bắc</label>
+            </div>
+            <div className="flex items-center me-4">
+              <input
+                id="green-radio" type="radio" value="Miền Trung" name="colored-radio"
+                checked= {blog.zones === 'Miền Trung'}
+                onChange={() => setBlog({ ...blog, zones:'Miền Trung' })}
+                className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 focus:ring-green-500"
+              />
+              <label htmlFor="green-radio" className="ms-2 text-sm font-medium text-gray-500">Miền Trung</label>
+            </div>
+            <div className="flex items-center me-4">
+              <input
+                id="purple-radio" type="radio" value="Miền Nam" name="colored-radio"
+                checked={blog.zones === 'Miền Nam'}
+                onChange={() => setBlog({ ...blog, zones:'Miền Nam' })}
+                className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 focus:ring-purple-500"
+              />
+              <label htmlFor="purple-radio" className="ms-2 text-sm font-medium text-gray-500">Miền Nam</label>
+            </div>
+          </div>
+        </div>
+
 
         <label className="block mb-2 text-sm font-medium text-gray-900" htmlFor="multiple_files">Thêm ảnh</label>
         <input

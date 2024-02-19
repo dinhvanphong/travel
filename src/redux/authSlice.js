@@ -6,7 +6,8 @@ const authSlice = createSlice({
     login:{
       currentUser: null,
       isFetching: false,
-      error: false
+      error: false,
+      msg: null
     },
     register:{
       isFetching: false,
@@ -18,15 +19,18 @@ const authSlice = createSlice({
   reducers:{
     loginStart: (state) => {
       state.login.isFetching = true
+      state.login.msg = null
     },
     loginSuccess: (state, action) => {
       state.login.isFetching = false
       state.login.currentUser = action.payload
       state.login.error = false
+      state.login.msg = null
     },
     loginFailed: (state) => {
       state.login.isFetching = false
       state.login.error = true
+      state.login.msg = 'Tên người dùng hoặc mật khẩu không chính xác!'
     },
     registerStart: (state) => {
       state.register.isFetching = true
