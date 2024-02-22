@@ -11,6 +11,8 @@ import {
   FaLinkedinIn
 } from 'react-icons/fa'
 import { AiFillDingtalkCircle, AiFillCrown, AiFillSecurityScan } from 'react-icons/ai'
+import ImgFooterBg from '~/img/footer-bg.png'
+
 
 const dataNavbar= [
   {
@@ -55,23 +57,27 @@ const dataSocial= [
 ]
 
 const Home = () => {
+  const backgroundImageUrl = `url(${ImgFooterBg})`
+
   return (
-    <div className='mt-[100px] w-[1400px] max-w-full m-auto min-h-80 mb-10'>
+    <div className='mt-[100px] w-[1400px] max-w-full m-auto min-h-80 mb-10 bg-[#1e1e1e] bg-fixed bg-bottom' style={{ backgroundImage: backgroundImageUrl }}>
       <SliderHome/>
 {/* ================================= */}
-      <div className='flex items-center justify-center gap-x-16 py-11'>
+      <div className='flex items-center justify-center gap-x-16 py-11 bg-transparent'>
         {dataNavbar.map((i, ind) => (
           <div key={ind} className='flex flex-col justify-center items-center cursor-pointer'>
             <div className='flex items-center justify-center bg-primary w-[80px] h-[80px] rounded-[50%] duration-300 hover:scale-90'>
               <div className='text-white text-3xl'>{i.icon}</div>
             </div>
-            <p className='text-2xl font-bold mt-3'>{i.title}</p>
+            <p className='text-2xl text-white font-bold mt-3'>{i.title}</p>
           </div>
         ))}
       </div>
 {/* =================================== */}
-      <NewBlogs/>
-      <div className='flex gap-16'>
+      <div className='bg-white'>
+        <NewBlogs/>
+      </div>
+      <div className='flex gap-16 bg-white'>
 {/* ==================================== */}
         <div className='flex-1'>
           <h2 className='uppercase text-xl font-bold py-5'>du lịch mới nhất</h2>

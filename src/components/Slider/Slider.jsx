@@ -71,7 +71,7 @@ const SliderHome = () => {
     prevArrow: <SamplePrevArrow/>
   }
   return (
-    <div className="h-[400px] w-full">
+    <div className="h-[400px] w-full bg-white">
       <Slider {...settings}>
         <SlideItem/>
         <SlideItem/>

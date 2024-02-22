@@ -1,12 +1,17 @@
 import axios from 'axios'
-import { loginFailed, loginStart, loginSuccess, registerSuccess, registerFailed, registerStart, logoutStart, logoutFailed, logoutSuccess } from './authSlice'
+import {
+  loginFailed, loginStart, loginSuccess,
+  loginUserFailed, loginUserSuccess, loginUserStart,
+  registerSuccess, registerFailed, registerStart,
+  logoutStart, logoutFailed, logoutSuccess
+} from './authSlice'
 import { fetchListBlogError, fetchListBlogStart, fetchListBlogSuccess, createBlogError, createBlogStart, createBlogSuccess } from './blogSlice'
 import { API_ROOT } from '~/utils/conStants'
 
 import { toast } from 'react-toastify'
 
 
-export const loginUserApi = async (user, dispatch, navigate) => {
+export const loginAdminApi = async (user, dispatch, navigate) => {
   dispatch(loginStart())
   try {
     const res = await axios.post(`${API_ROOT}/v1/auth/login`, user)
@@ -18,12 +23,24 @@ export const loginUserApi = async (user, dispatch, navigate) => {
   }
 }
 
+export const loginUserApi = async (user, dispatch, navigate) => {
+  dispatch(loginUserStart())
+  try {
+    const res = await axios.post(`${API_ROOT}/v1/auth/loginUser`, user)
+    dispatch(loginUserSuccess(res.data))
+    navigate('/')
+    toast.success('Đăng nhập thành công!')
+  } catch (error) {
+    dispatch(loginUserFailed())
+  }
+}
+
 export const registerUserApi = async (user, dispatch, navigate) => {
   dispatch(registerStart())
   try {
     const res = await axios.post(`${API_ROOT}/v1/auth/register`, user)
     dispatch(registerSuccess(res.data))
-    // navigate('/admin/create-blog')
+    navigate('/login')
     toast.success('Tạo tài khoản mới thành công!')
   } catch (error) {
     dispatch(registerFailed())

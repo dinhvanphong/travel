@@ -13,10 +13,17 @@ const authSlice = createSlice({
       isFetching: false,
       error: false,
       success: false
+    },
+    loginUser: {
+      currentUser: null,
+      isFetching: false,
+      error: false,
+      msg: null
     }
 
   },
   reducers:{
+  // LoginAdmin
     loginStart: (state) => {
       state.login.isFetching = true
       state.login.msg = null
@@ -32,6 +39,23 @@ const authSlice = createSlice({
       state.login.error = true
       state.login.msg = 'Tên người dùng hoặc mật khẩu không chính xác!'
     },
+    // LoginUser
+    loginUserStart: (state) => {
+      state.loginUser.isFetching = true
+      state.loginUser.msg = null
+    },
+    loginUserSuccess: (state, action) => {
+      state.loginUser.isFetching = false
+      state.loginUser.currentUser = action.payload
+      state.loginUser.error = false
+      state.loginUser.msg = null
+    },
+    loginUserFailed: (state) => {
+      state.loginUser.isFetching = false
+      state.loginUser.error = true
+      state.loginUser.msg = 'Tên người dùng hoặc mật khẩu không chính xác!'
+    },
+    // Tao tai khoan
     registerStart: (state) => {
       state.register.isFetching = true
     },
@@ -45,6 +69,7 @@ const authSlice = createSlice({
       state.register.error = true
       state.register.success = false
     },
+    // Dang xuat Admin
     logoutStart: (state) => {
       state.login.isFetching = true
     },
@@ -56,6 +81,19 @@ const authSlice = createSlice({
     logoutFailed: (state) => {
       state.login.isFetching = false
       state.login.error = true
+    },
+    // Dang xuat User
+    logoutUserStart: (state) => {
+      state.loginUser.isFetching = true
+    },
+    logoutUserSuccess: (state) => {
+      state.loginUser.isFetching = false
+      state.loginUser.currentUser = null
+      state.loginUser.error = false
+    },
+    logoutUserFailed: (state) => {
+      state.loginUser.isFetching = false
+      state.loginUser.error = true
     }
   }
 })
@@ -69,7 +107,13 @@ export const {
   registerSuccess,
   logoutFailed,
   logoutStart,
-  logoutSuccess
+  logoutSuccess,
+  loginUserFailed,
+  loginUserStart,
+  loginUserSuccess,
+  logoutUserFailed,
+  logoutUserStart,
+  logoutUserSuccess
 } = authSlice.actions
 
 export default authSlice.reducer

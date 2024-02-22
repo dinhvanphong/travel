@@ -8,6 +8,7 @@ import SidebarAd from '~/Admin/component/Sidebar/Sidebar'
 import Header from '~/components/Header/Header'
 import Footer from '~/components/Footer/Footer'
 import NewBlogs from '~/components/NewBlogs/NewBlogs'
+import SidebarRight from '~/components/SidebarRight/SidebarRight'
 // Admin
 const CreateBlog = lazy(() => import('./Admin/Pages/AdminBlog/CreateBlog'))
 const BlogList = lazy(() => import('./Admin/Pages/BlogList/BlogList'))
@@ -16,8 +17,12 @@ const Login = lazy(() => import('./Admin/Pages/Login/Login'))
 // const Register = lazy(() => import('./Admin/Pages/Register/Register'))
 // User
 const Home = lazy(() => import('./Pages/Home/Home'))
+const Detail = lazy(() => import('./Pages/Detail/Detail'))
+const DetailBlog = lazy(() => import('./Pages/DetailBlog/DetailBlog'))
+const MienBac = lazy(() => import('./Pages/MienBac/MienBac'))
+const MienTrung = lazy(() => import('./Pages/MienTrung/MienTrung'))
+const MienNam = lazy(() => import('./Pages/MienNam/MienNam'))
 import LoginUser from '~/Pages/LoginUser/LoginUser'
-
 
 
 const MainLayoutAdmin = () => {
@@ -45,13 +50,14 @@ const MainLayoutHome = () => {
 
 const MainLayoutDetail = () => {
   return (
-    <div className="flex mx-auto">
+    <div className="">
       <Header/>
-      <div className='flex'>
+      <div className='flex mt-[100px] w-[1400px] max-w-full m-auto min-h-80 mb-10'>
         <NewBlogs/>
         <Suspense fallback={<p>Loading...</p>}>
           <Outlet/>
         </Suspense>
+        <SidebarRight/>
       </div>
       <Footer/>
     </div>
@@ -63,10 +69,22 @@ function App() {
   const user = useSelector((state) => state.auth.login.currentUser)
   return (
     <Routes>
-      <Route path='login' element={<LoginUser/>}/>
       <Route path='/' element={<MainLayoutHome/>}>
         <Route index element={<Home/>}/>
       </Route>
+
+      <Route path='/' element={<MainLayoutDetail/>}>
+        <Route path='mien-bac' element={<MienBac/>}/>
+        <Route path='mien-trung' element={<MienTrung/>}/>
+        <Route path='mien-nam' element={<MienNam/>}/>
+      </Route>
+
+      <Route path='/:slug' element={<MainLayoutDetail/>}>
+        <Route index element={<DetailBlog/>}/>
+      </Route>
+
+      <Route path='login' element={<LoginUser/>}/>
+
       <Route path='/admin' element={<MainLayoutAdmin/>}>
         <Route index element={<Login/>}/>
         <Route path='create-blog' element={user ? <CreateBlog/> : <Navigate to={'/admin'}/>}/>

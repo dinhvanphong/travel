@@ -1,4 +1,4 @@
-import { useState } from 'react'
+
 import { NavLink, useNavigate } from 'react-router-dom'
 
 import { AiFillEdit } from 'react-icons/ai'
@@ -8,8 +8,7 @@ import { MdSwitchAccount } from 'react-icons/md'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { logOutApi } from '~/redux/apiRequest'
-import { createAxios } from '~/createInstance'
-import { logoutSuccess } from '~/redux/authSlice'
+
 
 const dataMenu = [
   {

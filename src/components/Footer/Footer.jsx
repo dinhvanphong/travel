@@ -7,8 +7,10 @@ import {
   FaSoundcloud,
   FaLinkedinIn
 } from 'react-icons/fa'
+import ImgFooterBg from '~/img/footer-bg.png'
 
 const Footer = () => {
+  const backgroundImageUrl = `url(${ImgFooterBg})`
   const dataSocial= [
     {
       title: 'youtube',
@@ -36,7 +38,7 @@ const Footer = () => {
     }
   ]
   return (
-    <div className='bg-[#313131] min-h-9 pt-5 pb-3'>
+    <div className='bg-[#1e1e1e] bg-bottom bg-cover bg-no-repeat min-h-9 pt-7 pb-3' style={{ backgroundImage: backgroundImageUrl }}>
       <div className='w-[1400px] max-w-full m-auto'>
         <div className='flex justify-center items-center gap-7'>
           {dataSocial.map((i, ind) =>

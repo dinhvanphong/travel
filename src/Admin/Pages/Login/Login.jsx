@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { loginUserApi } from '~/redux/apiRequest'
+import { loginAdminApi } from '~/redux/apiRequest'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -18,7 +18,7 @@ const Login = () => {
       username: username,
       password: password
     }
-    loginUserApi(newUser, dispatch, navigate)
+    loginAdminApi(newUser, dispatch, navigate)
   }
   return (
     <div className='flex items-center justify-center w-full'>
