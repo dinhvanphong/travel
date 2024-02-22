@@ -58,14 +58,12 @@ function SlideItem(props) {
 const SliderHome = () => {
   const settings = {
     className: 'center',
-    dots: true,
-    centerMode: true,
     infinite: true,
-    centerPadding: '30px',
+    centerPadding: '0px',
     slidesToShow: 3,
-    speed: 500,
+    speed: 800,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 2000,
     cssEase: 'linear',
     nextArrow: <SampleNextArrow/>,
     prevArrow: <SamplePrevArrow/>

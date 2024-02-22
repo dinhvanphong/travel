@@ -12,20 +12,24 @@ import {
 } from 'react-icons/fa'
 import { AiFillDingtalkCircle, AiFillCrown, AiFillSecurityScan } from 'react-icons/ai'
 import ImgFooterBg from '~/img/footer-bg.png'
+import { Link } from 'react-router-dom'
 
 
 const dataNavbar= [
   {
     title: 'Miền Bắc',
-    icon: <AiFillDingtalkCircle />
+    icon: <AiFillDingtalkCircle />,
+    to: 'mien-bac'
   },
   {
     title: 'Miền Trung',
-    icon: <AiFillCrown/>
+    icon: <AiFillCrown/>,
+    to: 'mien-trung'
   },
   {
     title: 'Miền Nam',
-    icon: <AiFillSecurityScan/>
+    icon: <AiFillSecurityScan/>,
+    to: 'mien-nam'
   }
 ]
 
@@ -66,16 +70,28 @@ const Home = () => {
       <div className='flex items-center justify-center gap-x-16 py-11 bg-transparent'>
         {dataNavbar.map((i, ind) => (
           <div key={ind} className='flex flex-col justify-center items-center cursor-pointer'>
-            <div className='flex items-center justify-center bg-primary w-[80px] h-[80px] rounded-[50%] duration-300 hover:scale-90'>
+            <Link className='flex items-center justify-center bg-primary w-[80px] h-[80px] rounded-[50%] duration-300 hover:scale-90'
+              to={i.to}
+            >
               <div className='text-white text-3xl'>{i.icon}</div>
-            </div>
+            </Link>
             <p className='text-2xl text-white font-bold mt-3'>{i.title}</p>
           </div>
         ))}
       </div>
 {/* =================================== */}
-      <div className='bg-white'>
+      <div className='bg-white flex gap-5'>
         <NewBlogs/>
+        <div className='w-[100%] min-h-[600px] flex items-center relative'>
+          <div className='w-[620px] h-[550px] absolute right-0 rounded-2xl overflow-hidden'>
+            <img className='w-full h-full object-cover' src={ImgTest} alt="dasd" />
+          </div>
+          <div className='w-[620px] min-h-[480px] bg-primary p-8 absolute right-[40%] rounded-2xl opacity-85'>
+            <p className='text-xl font-bold text-white mb-4'>Love Where Your are Going</p>
+            <h2 className='text-5xl mb-4 text-yellow-400'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique, quo.</h2>
+            <p className='text-white'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, aperiam odit! Aliquam eius magni ad? Cum, nemo? Est tempore itaque maiores delectus et quos odio animi. Enim, id iusto deleniti incidunt adipisci culpa laboriosam quas sint quo, consectetur voluptatem dolores expedita reprehenderit vitae dolorem iste. Error, quibusdam. Consequatur, quod nisi?</p>
+          </div>
+        </div>
       </div>
       <div className='flex gap-16 bg-white'>
 {/* ==================================== */}
