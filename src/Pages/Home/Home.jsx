@@ -64,7 +64,7 @@ const Home = () => {
   const backgroundImageUrl = `url(${ImgFooterBg})`
 
   return (
-    <div className='mt-[100px] w-[1400px] max-w-full m-auto min-h-80 mb-10 bg-[#1e1e1e] bg-fixed bg-bottom' style={{ backgroundImage: backgroundImageUrl }}>
+    <div className='mt-[100px] w-[1400px] max-w-full m-auto min-h-80 mb-10 bg-[#040404b6] bg-fixed bg-bottom' style={{ backgroundImage: backgroundImageUrl }}>
       <SliderHome/>
 {/* ================================= */}
       <div className='flex items-center justify-center gap-x-16 py-11 bg-transparent'>
@@ -86,7 +86,7 @@ const Home = () => {
           <div className='w-[620px] h-[550px] absolute right-0 rounded-2xl overflow-hidden'>
             <img className='w-full h-full object-cover' src={ImgTest} alt="dasd" />
           </div>
-          <div className='w-[620px] min-h-[480px] bg-primary p-8 absolute right-[40%] rounded-2xl opacity-85'>
+          <div className='w-[620px] min-h-[480px] bg-primary p-8 absolute right-[40%] rounded-2xl opacity-90'>
             <p className='text-xl font-bold text-white mb-4'>Love Where Your are Going</p>
             <h2 className='text-5xl mb-4 text-yellow-400'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique, quo.</h2>
             <p className='text-white'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, aperiam odit! Aliquam eius magni ad? Cum, nemo? Est tempore itaque maiores delectus et quos odio animi. Enim, id iusto deleniti incidunt adipisci culpa laboriosam quas sint quo, consectetur voluptatem dolores expedita reprehenderit vitae dolorem iste. Error, quibusdam. Consequatur, quod nisi?</p>
