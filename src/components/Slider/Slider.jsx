@@ -2,7 +2,10 @@
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import { getAllBlogsApi } from '~/redux/apiRequest'
 import ImgTest from '~/img/quang-ninh.jpg'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props
@@ -44,18 +47,24 @@ function SamplePrevArrow(props) {
 }
 
 function SlideItem(props) {
-  // const { index, ...otherProps } = props
+  const { i } = props
   return (
     <div className='relative h-[350px] w-ful mx-1'>
       <div className='w-full h-full rounded-lg overflow-hidden'>
-        <img className='w-full h-full object-cover' src={ImgTest} alt="dfad" />
+        <img className='w-full h-full object-cover' src={i.imgList[0]} alt="dfad" />
       </div>
-      <p className='absolute bottom-4 text-xl text-white px-4 font-bold hover:underline duration-200 cursor-pointer'>48h Tại Quảng Ninh - Ăn gì, chơi gì, ở đâu ?</p>
+      <p className='absolute bottom-4 text-xl text-white px-4 font-bold hover:underline duration-200 cursor-pointer'>{i.title}</p>
     </div>
   )
 }
 
 const SliderHome = () => {
+  const dispatch = useDispatch()
+  const listBlogs = useSelector((state) => state.blog.listBlogs.allBlogs)
+  useEffect(() => {
+    getAllBlogsApi(dispatch)
+  }, [])
+  console.log(listBlogs)
   const settings = {
     className: 'center',
     infinite: true,
@@ -63,7 +72,7 @@ const SliderHome = () => {
     slidesToShow: 3,
     speed: 800,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
     cssEase: 'linear',
     nextArrow: <SampleNextArrow/>,
     prevArrow: <SamplePrevArrow/>
@@ -71,12 +80,7 @@ const SliderHome = () => {
   return (
     <div className="h-[400px] w-full bg-white">
       <Slider {...settings}>
-        <SlideItem/>
-        <SlideItem/>
-        <SlideItem/>
-        <SlideItem/>
-        <SlideItem/>
-        <SlideItem/>
+        {listBlogs && listBlogs.map(i => <SlideItem key={i._id} i={i}/>)}
       </Slider>
     </div>
   )

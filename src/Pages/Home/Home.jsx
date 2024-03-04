@@ -13,6 +13,7 @@ import {
 import { AiFillDingtalkCircle, AiFillCrown, AiFillSecurityScan } from 'react-icons/ai'
 import ImgFooterBg from '~/img/footer-bg.png'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 
 const dataNavbar= [
@@ -62,6 +63,7 @@ const dataSocial= [
 
 const Home = () => {
   const backgroundImageUrl = `url(${ImgFooterBg})`
+  const listBlogs = useSelector((state) => state.blog.listBlogs.allBlogs)
 
   return (
     <div className='mt-[100px] w-[1400px] max-w-full m-auto min-h-80 mb-10 bg-[#040404b6] bg-fixed bg-bottom' style={{ backgroundImage: backgroundImageUrl }}>
@@ -81,7 +83,7 @@ const Home = () => {
       </div>
 {/* =================================== */}
       <div className='bg-white flex gap-5'>
-        <NewBlogs/>
+        <NewBlogs listBlogs={listBlogs}/>
         <div className='w-[100%] min-h-[600px] flex items-center relative'>
           <div className='w-[620px] h-[550px] absolute right-0 rounded-2xl overflow-hidden'>
             <img className='w-full h-full object-cover' src={ImgTest} alt="dasd" />
@@ -98,30 +100,14 @@ const Home = () => {
         <div className='flex-1'>
           <h2 className='uppercase text-xl font-bold py-5'>du lịch mới nhất</h2>
           <ul className='grid grid-cols-2 gap-3'>
-            <li className='relative w-full h-[220px] group/item'>
-              <div className='w-full h-full overflow-hidden rounded-md'>
-                <img className='w-full h-full object-cover group-hover/item:brightness-50 duration-300 cursor-pointer' src={ImgTest} alt="ssad"/>
-              </div>
-              <p className='absolute text-white bottom-5 px-5 font-bold cursor-pointer'>48h Khám phá Quảng Ninh - Đi đâu, ăn gì, ở đâu tại Quảng Ninh</p>
-            </li>
-            <li className='relative w-full h-[220px] group/item'>
-              <div className='w-full h-full overflow-hidden rounded-md'>
-                <img className='w-full h-full object-cover group-hover/item:brightness-50 duration-300 cursor-pointer' src={ImgTest} alt="ssad"/>
-              </div>
-              <p className='absolute text-white bottom-5 px-5 font-bold cursor-pointer'>48h Khám phá Quảng Ninh - Đi đâu, ăn gì, ở đâu tại Quảng Ninh</p>
-            </li>
-            <li className='relative w-full h-[220px] group/item'>
-              <div className='w-full h-full overflow-hidden rounded-md'>
-                <img className='w-full h-full object-cover group-hover/item:brightness-50 duration-300 cursor-pointer' src={ImgTest} alt="ssad"/>
-              </div>
-              <p className='absolute text-white bottom-5 px-5 font-bold cursor-pointer'>48h Khám phá Quảng Ninh - Đi đâu, ăn gì, ở đâu tại Quảng Ninh</p>
-            </li>
-            <li className='relative w-full h-[220px] group/item'>
-              <div className='w-full h-full overflow-hidden rounded-md'>
-                <img className='w-full h-full object-cover group-hover/item:brightness-50 duration-300 cursor-pointer' src={ImgTest} alt="ssad"/>
-              </div>
-              <p className='absolute text-white bottom-5 px-5 font-bold cursor-pointer'>48h Khám phá Quảng Ninh - Đi đâu, ăn gì, ở đâu tại Quảng Ninh</p>
-            </li>
+            {listBlogs && listBlogs.map(i => (
+              <li className='relative w-full h-[220px] group/item' key={i._id}>
+                <div className='w-full h-full overflow-hidden rounded-md'>
+                  <img className='w-full h-full object-cover group-hover/item:brightness-50 duration-300 cursor-pointer' src={i.imgList[0]} alt="ssad"/>
+                </div>
+                <p className='absolute text-white bottom-5 px-5 font-bold cursor-pointer'>{i.title}</p>
+              </li>
+            ))}
           </ul>
         </div>
 {/* ================================== */}

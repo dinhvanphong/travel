@@ -1,16 +1,16 @@
 import axios from 'axios'
 import {
   loginFailed, loginStart, loginSuccess,
-  loginUserFailed, loginUserSuccess, loginUserStart,
   registerSuccess, registerFailed, registerStart,
   logoutStart, logoutFailed, logoutSuccess
 } from './authSlice'
+import { loginUserFailed, loginUserSuccess, loginUserStart, logoutUserFailed, logoutUserStart, logoutUserSuccess } from './authUserSlice'
 import { fetchListBlogError, fetchListBlogStart, fetchListBlogSuccess, createBlogError, createBlogStart, createBlogSuccess } from './blogSlice'
 import { API_ROOT } from '~/utils/conStants'
 
 import { toast } from 'react-toastify'
 
-
+// ok
 export const loginAdminApi = async (user, dispatch, navigate) => {
   dispatch(loginStart())
   try {
@@ -22,7 +22,7 @@ export const loginAdminApi = async (user, dispatch, navigate) => {
     dispatch(loginFailed())
   }
 }
-
+// ok
 export const loginUserApi = async (user, dispatch, navigate) => {
   dispatch(loginUserStart())
   try {
@@ -56,7 +56,7 @@ export const getAllBlogsApi =async(dispatch) => {
     dispatch(fetchListBlogError())
   }
 }
-
+// ok
 export const createBlogApi = async(data, dispatch, navigate) => {
   dispatch(createBlogStart())
   try {
@@ -70,7 +70,7 @@ export const createBlogApi = async(data, dispatch, navigate) => {
   }
 }
 
-
+// ok
 export const logOutApi =async (dispatch, id, navigate) => {
   dispatch(logoutStart())
   try {
@@ -80,6 +80,18 @@ export const logOutApi =async (dispatch, id, navigate) => {
     toast.success('Đăng xuất thành công')
   } catch (error) {
     dispatch(logoutFailed())
+  }
+}
+// ok
+export const logOutUserApi =async (dispatch, id, navigate) => {
+  dispatch(logoutUserStart())
+  try {
+    await axios.post(`${API_ROOT}/v1/auth/logoutUser`, id)
+    dispatch(logoutUserSuccess())
+    navigate('/')
+    toast.success('Đăng xuất thành công')
+  } catch (error) {
+    dispatch(logoutUserFailed())
   }
 }
 

@@ -82,19 +82,7 @@ const authSlice = createSlice({
       state.login.isFetching = false
       state.login.error = true
     },
-    // Dang xuat User
-    logoutUserStart: (state) => {
-      state.loginUser.isFetching = true
-    },
-    logoutUserSuccess: (state) => {
-      state.loginUser.isFetching = false
-      state.loginUser.currentUser = null
-      state.loginUser.error = false
-    },
-    logoutUserFailed: (state) => {
-      state.loginUser.isFetching = false
-      state.loginUser.error = true
-    }
+
   }
 })
 
