@@ -5,11 +5,17 @@ import {
   logoutStart, logoutFailed, logoutSuccess
 } from './authSlice'
 import { loginUserFailed, loginUserSuccess, loginUserStart, logoutUserFailed, logoutUserStart, logoutUserSuccess } from './authUserSlice'
-import { fetchListBlogError, fetchListBlogStart, fetchListBlogSuccess, createBlogError, createBlogStart, createBlogSuccess } from './blogSlice'
+import {
+  fetchListBlogError, fetchListBlogStart, fetchListBlogSuccess,
+  createBlogError, createBlogStart, createBlogSuccess,
+} from './blogSlice'
+import { fetchBlogDetailError, fetchBlogDetailStart, fetchBlogDetailSuccess } from './blogDetailSlice'
 import { API_ROOT } from '~/utils/conStants'
 
 import { toast } from 'react-toastify'
 
+
+// --------------------- AUTH --------------------------------
 // ok
 export const loginAdminApi = async (user, dispatch, navigate) => {
   dispatch(loginStart())
@@ -47,29 +53,6 @@ export const registerUserApi = async (user, dispatch, navigate) => {
   }
 }
 
-export const getAllBlogsApi =async(dispatch) => {
-  dispatch(fetchListBlogStart())
-  try {
-    const res = await axios.get(`${API_ROOT}/v1/blogs`)
-    dispatch(fetchListBlogSuccess(res.data))
-  } catch (error) {
-    dispatch(fetchListBlogError())
-  }
-}
-// ok
-export const createBlogApi = async(data, dispatch, navigate) => {
-  dispatch(createBlogStart())
-  try {
-    const res = await axios.post(`${API_ROOT}/v1/blogs`, data)
-    dispatch(createBlogSuccess(res.data))
-    toast.success('Tạo bài viết thành công!')
-    navigate('/admin/blog-list')
-  } catch (error) {
-    dispatch(createBlogError())
-    toast.error('Tạo bài viết thất bại!')
-  }
-}
-
 // ok
 export const logOutApi =async (dispatch, id, navigate) => {
   dispatch(logoutStart())
@@ -94,6 +77,41 @@ export const logOutUserApi =async (dispatch, id, navigate) => {
     dispatch(logoutUserFailed())
   }
 }
+// --------------------- BLOG --------------------------------
+// ok
+export const getAllBlogsApi =async(dispatch) => {
+  dispatch(fetchListBlogStart())
+  try {
+    const res = await axios.get(`${API_ROOT}/v1/blogs`)
+    dispatch(fetchListBlogSuccess(res.data))
+  } catch (error) {
+    dispatch(fetchListBlogError())
+  }
+}
+// ok
+export const getBlogDetailApi =async(dispatch, slug) => {
+  dispatch(fetchBlogDetailStart())
+  try {
+    const res = await axios.get(`${API_ROOT}/v1/blogs/${slug}`)
+    dispatch(fetchBlogDetailSuccess(res.data))
+  } catch (error) {
+    dispatch(fetchBlogDetailError())
+  }
+}
+// ok
+export const createBlogApi = async(data, dispatch, navigate) => {
+  dispatch(createBlogStart())
+  try {
+    const res = await axios.post(`${API_ROOT}/v1/blogs`, data)
+    dispatch(createBlogSuccess(res.data))
+    toast.success('Tạo bài viết thành công!')
+    navigate('/admin/blog-list')
+  } catch (error) {
+    dispatch(createBlogError())
+    toast.error('Tạo bài viết thất bại!')
+  }
+}
+
 
 // export const logOutApi =async (dispatch, id, navigate, accessToken, axiosJWT) => {
 //   dispatch(logoutStart())

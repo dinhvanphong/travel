@@ -6,6 +6,7 @@ import { getAllBlogsApi } from '~/redux/apiRequest'
 import ImgTest from '~/img/quang-ninh.jpg'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props
@@ -48,12 +49,13 @@ function SamplePrevArrow(props) {
 
 function SlideItem(props) {
   const { i } = props
+  const navigate = useNavigate()
   return (
     <div className='relative h-[350px] w-ful mx-1'>
       <div className='w-full h-full rounded-lg overflow-hidden'>
         <img className='w-full h-full object-cover' src={i.imgList[0]} alt="dfad" />
       </div>
-      <p className='absolute bottom-4 text-xl text-white px-4 font-bold hover:underline duration-200 cursor-pointer'>{i.title}</p>
+      <p onClick={() => navigate(`/${i.slug}`)} className='absolute bottom-4 text-xl text-white px-4 font-bold hover:underline duration-200 cursor-pointer'>{i.title}</p>
     </div>
   )
 }

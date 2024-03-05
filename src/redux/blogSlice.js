@@ -8,6 +8,14 @@ const blogSlice = createSlice({
       isFetching: false,
       error: false
     },
+
+    blogDetail: {
+      blog: null,
+      isFetching: false,
+      success: false,
+      error: false
+    },
+
     createBlog: {
       isFetching: false,
       success: false,
@@ -25,6 +33,19 @@ const blogSlice = createSlice({
     fetchListBlogError: (state) => {
       state.listBlogs.isFetching = false
       state.listBlogs.error = true
+    },
+    fetchBlogDetailStart: (state) => {
+      state.blogDetail.isFetching = true
+    },
+    fetchBlogDetailSuccess: (state, action) => {
+      state.blogDetail.isFetching = false
+      state.blogDetail.success = true
+      state.blogDetail.blog = action.payload
+    },
+    fetchBlogDetailError: (state) => {
+      state.blogDetail.isFetching = false
+      state.blogDetail.success = false
+      state.blogDetail.error = true
     },
     createBlogStart: (state) => {
       state.createBlog.isFetching = true
@@ -45,6 +66,9 @@ export const {
   fetchListBlogStart,
   fetchListBlogSuccess,
   fetchListBlogError,
+  fetchBlogDetailError,
+  fetchBlogDetailStart,
+  fetchBlogDetailSuccess,
   createBlogError,
   createBlogStart,
   createBlogSuccess

@@ -1,17 +1,27 @@
 import React from 'react'
 import ImgTest from '~/img/test.jpg'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+
 
 const SidebarRight = () => {
+  const listBlogs = useSelector((state) => state.blog.listBlogs.allBlogs)
+
   return (
     <div className='w-[300px]'>
       <div className='mb-7'>
         <p className='uppercase px-3 py-2 font-semibold w-fit'>Bài viết mới nhất</p>
         <span className='block w-full h-[2px] bg-primary'></span>
         <ul>
-          <li className=''>
-            <p className='hover:text-primary duration-200 font-normal text-[15px] text-[#333] py-4 cursor-pointer'>48h Khám phá Quảng Ninh.</p>
-            <span className='block w-full h-[2px] bg-[#d7d7d7]'></span>
-          </li>
+          {listBlogs && listBlogs.map(i => (
+            <Link to={`/${i.slug}`} key={i._id}>
+              <li className='' >
+                <p className='hover:text-primary duration-200 font-normal text-[15px] text-[#333] py-4 cursor-pointer'>{i.title}</p>
+                <span className='block w-full h-[1px] bg-[#d7d7d7]'></span>
+              </li>
+            </Link>
+
+          ))}
         </ul>
       </div>
       <div className='mb-7'>

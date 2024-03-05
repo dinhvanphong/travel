@@ -23,6 +23,7 @@ const MienBac = lazy(() => import('./Pages/MienBac/MienBac'))
 const MienTrung = lazy(() => import('./Pages/MienTrung/MienTrung'))
 const MienNam = lazy(() => import('./Pages/MienNam/MienNam'))
 import LoginUser from '~/Pages/LoginUser/LoginUser'
+import ScrollToTopButton from '~/components/ScrollToTopButton/ScrollToTopButton'
 
 
 const MainLayoutAdmin = () => {
@@ -44,6 +45,7 @@ const MainLayoutHome = () => {
         <Outlet />
       </Suspense>
       <Footer/>
+      <ScrollToTopButton/>
     </div>
   )
 }
