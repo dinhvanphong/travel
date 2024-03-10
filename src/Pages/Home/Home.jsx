@@ -1,6 +1,6 @@
 import NewBlogs from '~/components/NewBlogs/NewBlogs'
 import SliderHome from '~/components/Slider/Slider'
-import ImgTest from '~/img/mui-ne.jpg'
+import ImgTest from '~/img/du-lich.webp'
 import ImgTest1 from '~/img/test.jpg'
 import {
   FaYoutube,

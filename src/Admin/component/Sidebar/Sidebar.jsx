@@ -8,6 +8,7 @@ import { MdSwitchAccount } from 'react-icons/md'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { logOutApi } from '~/redux/apiRequest'
+import ImgAdmin from '~/img/admin.png'
 
 
 const dataMenu = [
@@ -51,20 +52,23 @@ const Sidebar = () => {
     <aside id="default-sidebar" className="w-[20%] h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
       <div className="relative h-full px-3 py-4 overflow-y-auto bg-gray-800">
         <h1 className='text-2xl text-white text-center pb-[18px]'>TRAVEL</h1>
-        <ul className="space-y-2 font-medium">
-          {dataMenu.map((i, index) => (
-            <li key={index}>
-              <NavLink
-                to={user ? i.to : '/admin'}
-                // className="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group">
-                className={({ isActive }) => `${isActive ? active : normal + 'text-white hover:bg-gray-700'} flex items-center p-2 rounded-lg group`}
-              >
-                {i.icon}
-                <span className="ms-3">{i.title}</span>
-              </NavLink>
-            </li>
-          ))}
-        </ul>
+        {user &&
+          <ul className="space-y-2 font-medium">
+            {dataMenu.map((i, index) => (
+              <li key={index}>
+                <NavLink
+                  to={user ? i.to : '/admin'}
+                  // className="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group">
+                  className={({ isActive }) => `${isActive ? active : normal + 'text-white hover:bg-gray-700'} flex items-center p-2 rounded-lg group`}
+                >
+                  {i.icon}
+                  <span className="ms-3">{i.title}</span>
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        }
+        <img className='my-5' src={ImgAdmin} alt="sad" />
         <div className='absolute bottom-10 left-0 right-0 text-white'>
           {user
             ?
