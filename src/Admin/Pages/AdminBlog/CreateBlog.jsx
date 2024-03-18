@@ -22,7 +22,7 @@ const AdminBlog = () => {
     time: '',
     description: '',
     note: '',
-    zones: 'Miền Bắc',
+    zones: 'mien-bac',
     imgList: []
   })
 
@@ -133,8 +133,8 @@ const AdminBlog = () => {
               <input
                 id="red-radio"
                 type="radio"
-                value="Miền Bắc"
-                checked={blog.zones === 'Miền Bắc'}
+                value="mien-bac"
+                checked={blog.zones === 'mien-bac'}
                 onChange={() => setBlog({ ...blog, zones:'Miền Bắc' })}
                 name="colored-radio"
                 className="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500"
@@ -143,18 +143,18 @@ const AdminBlog = () => {
             </div>
             <div className="flex items-center me-4">
               <input
-                id="green-radio" type="radio" value="Miền Trung" name="colored-radio"
-                checked= {blog.zones === 'Miền Trung'}
-                onChange={() => setBlog({ ...blog, zones:'Miền Trung' })}
+                id="green-radio" type="radio" value="mien-trung" name="colored-radio"
+                checked= {blog.zones === 'mien-trung'}
+                onChange={() => setBlog({ ...blog, zones:'mien-trung' })}
                 className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 focus:ring-green-500"
               />
               <label htmlFor="green-radio" className="ms-2 text-sm font-medium text-gray-500">Miền Trung</label>
             </div>
             <div className="flex items-center me-4">
               <input
-                id="purple-radio" type="radio" value="Miền Nam" name="colored-radio"
-                checked={blog.zones === 'Miền Nam'}
-                onChange={() => setBlog({ ...blog, zones:'Miền Nam' })}
+                id="purple-radio" type="radio" value="mien-nam" name="colored-radio"
+                checked={blog.zones === 'mien-nam'}
+                onChange={() => setBlog({ ...blog, zones:'mien-nam' })}
                 className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 focus:ring-purple-500"
               />
               <label htmlFor="purple-radio" className="ms-2 text-sm font-medium text-gray-500">Miền Nam</label>

@@ -9,6 +9,7 @@ import { MdSwitchAccount } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { logOutApi } from '~/redux/apiRequest'
 import ImgAdmin from '~/img/admin.png'
+import Logo from '~/img/logo.png'
 
 
 const dataMenu = [
@@ -51,7 +52,10 @@ const Sidebar = () => {
   return (
     <aside id="default-sidebar" className="w-[20%] h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
       <div className="relative h-full px-3 py-4 overflow-y-auto bg-gray-800">
-        <h1 className='text-2xl text-white text-center pb-[18px]'>TRAVEL</h1>
+        <h1 className='text-2xl text-white text-center pb-[18px] flex items-center justify-center gap-1'>
+          <img className='w-8 h-8 rounded-[50%]' src={Logo} alt="logo" />
+          TRAVEL
+        </h1>
         {user &&
           <ul className="space-y-2 font-medium">
             {dataMenu.map((i, index) => (

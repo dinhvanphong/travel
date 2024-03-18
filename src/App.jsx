@@ -23,6 +23,7 @@ const MienBac = lazy(() => import('./Pages/MienBac/MienBac'))
 const MienTrung = lazy(() => import('./Pages/MienTrung/MienTrung'))
 const MienNam = lazy(() => import('./Pages/MienNam/MienNam'))
 import LoginUser from '~/Pages/LoginUser/LoginUser'
+import Register from '~/Pages/Register/Register'
 import ScrollToTopButton from '~/components/ScrollToTopButton/ScrollToTopButton'
 
 
@@ -86,6 +87,7 @@ function App() {
       </Route>
 
       <Route path='login' element={<LoginUser/>}/>
+      <Route path='register' element={<Register/>}/>
 
       <Route path='/admin' element={<MainLayoutAdmin/>}>
         <Route index element={<Login/>}/>

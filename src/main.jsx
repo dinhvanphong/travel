@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <App/>
           <ToastContainer
             position="top-center"
-            autoClose={4000}
+            autoClose={3000}
             pauseOnHover={false}
           />
         </BrowserRouter>

@@ -8,8 +8,10 @@ import { loginUserFailed, loginUserSuccess, loginUserStart, logoutUserFailed, lo
 import {
   fetchListBlogError, fetchListBlogStart, fetchListBlogSuccess,
   createBlogError, createBlogStart, createBlogSuccess,
+
 } from './blogSlice'
 import { fetchBlogDetailError, fetchBlogDetailStart, fetchBlogDetailSuccess } from './blogDetailSlice'
+import { fetchBlogMienBacError, fetchBlogMienBacStart, fetchBlogMienBacSuccess } from './blogMienBac'
 import { API_ROOT } from '~/utils/conStants'
 
 import { toast } from 'react-toastify'
@@ -96,6 +98,16 @@ export const getBlogDetailApi =async(dispatch, slug) => {
     dispatch(fetchBlogDetailSuccess(res.data))
   } catch (error) {
     dispatch(fetchBlogDetailError())
+  }
+}
+// ok
+export const getMienBacBlogsApi =async(dispatch) => {
+  dispatch(fetchBlogMienBacStart())
+  try {
+    const res = await axios.get(`${API_ROOT}/v1/blogs/mien-bac`)
+    dispatch(fetchBlogMienBacSuccess(res.data))
+  } catch (error) {
+    dispatch(fetchBlogMienBacError())
   }
 }
 // ok
