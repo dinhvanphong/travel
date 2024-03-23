@@ -6,8 +6,7 @@ const authSlice = createSlice({
     login:{
       currentUser: null,
       isFetching: false,
-      error: false,
-      msg: null
+      error: false
     },
     register:{
       isFetching: false,
@@ -17,8 +16,7 @@ const authSlice = createSlice({
     loginUser: {
       currentUser: null,
       isFetching: false,
-      error: false,
-      msg: null
+      error: false
     }
 
   },
@@ -26,34 +24,15 @@ const authSlice = createSlice({
   // LoginAdmin
     loginStart: (state) => {
       state.login.isFetching = true
-      state.login.msg = null
     },
     loginSuccess: (state, action) => {
       state.login.isFetching = false
       state.login.currentUser = action.payload
       state.login.error = false
-      state.login.msg = null
     },
     loginFailed: (state) => {
       state.login.isFetching = false
       state.login.error = true
-      state.login.msg = 'Tên người dùng hoặc mật khẩu không chính xác!'
-    },
-    // LoginUser
-    loginUserStart: (state) => {
-      state.loginUser.isFetching = true
-      state.loginUser.msg = null
-    },
-    loginUserSuccess: (state, action) => {
-      state.loginUser.isFetching = false
-      state.loginUser.currentUser = action.payload
-      state.loginUser.error = false
-      state.loginUser.msg = null
-    },
-    loginUserFailed: (state) => {
-      state.loginUser.isFetching = false
-      state.loginUser.error = true
-      state.loginUser.msg = 'Tên người dùng hoặc mật khẩu không chính xác!'
     },
     // Tao tai khoan
     registerStart: (state) => {
@@ -82,6 +61,34 @@ const authSlice = createSlice({
       state.login.isFetching = false
       state.login.error = true
     },
+    // login user
+    loginUserStart: (state) => {
+      state.loginUser.isFetching = true
+      state.loginUser.msg = null
+    },
+    loginUserSuccess: (state, action) => {
+      state.loginUser.isFetching = false
+      state.loginUser.currentUser = action.payload
+      state.loginUser.error = false
+      state.loginUser.msg = null
+    },
+    loginUserFailed: (state) => {
+      state.loginUser.isFetching = false
+      state.loginUser.error = true
+    },
+    // logout user
+    logoutUserStart: (state) => {
+      state.loginUser.isFetching = true
+    },
+    logoutUserSuccess: (state) => {
+      state.loginUser.isFetching = false
+      state.loginUser.currentUser = null
+      state.loginUser.error = false
+    },
+    logoutUserFailed: (state) => {
+      state.loginUser.isFetching = false
+      state.loginUser.error = true
+    }
 
   }
 })

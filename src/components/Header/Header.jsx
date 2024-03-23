@@ -57,7 +57,7 @@ const active = 'text-primary'
 const Header = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const user = useSelector((state) => state.authUser.loginUser.currentUser)
+  const user = useSelector((state) => state.auth.loginUser.currentUser)
   const id = user?._id
   // const [user, setUser] = useState(true)
   const handleLogout = () => {
@@ -77,7 +77,6 @@ const Header = () => {
                 <NavLink
                   to={i.to}
                   className={({ isActive }) => `${isActive ? active : ''} block py-2 px-3 font-bold text-gray-900 rounded hover:text-primary duration-200`}
-
                 >
                   <p className="">{i.title}</p>
                 </NavLink>
@@ -98,7 +97,7 @@ const Header = () => {
               <button onClick={handleLogout} type="button" className="text-white outline outline-1 outline-primary bg-primary hover:bg-blue-500 rounded-lg text-sm px-4 py-2 text-center">Đăng xuất</button>
             </div>
             :<div className="flex gap-1 md:space-x-0 rtl:space-x-reverse">
-              <button type="button" className="text-gray-900 outline outline-1 rounded-lg text-sm px-4 py-2 text-center">Đăng ký</button>
+              <button onClick={() => navigate('/register')} type="button" className="text-gray-900 outline outline-1 rounded-lg text-sm px-4 py-2 text-center">Đăng ký</button>
               <button onClick={() => navigate('/login')} type="button" className="text-white outline outline-1 outline-primary bg-primary hover:bg-blue-500 rounded-lg text-sm px-4 py-2 text-center">Đăng nhập</button>
             </div>
           }

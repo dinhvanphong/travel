@@ -1,9 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import authReducer from './authSlice'
 import blogReducer from './blogSlice'
-import authUserReducer from './authUserSlice'
-import blogDetailReducer from './blogDetailSlice'
-import blogMienBacReducer from './blogMienBac'
 
 import {
   persistStore,
@@ -17,13 +14,17 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
+
 const persistConfig = {
   key: 'root',
   version: 1,
   storage
 }
 
-const rootReducer = combineReducers({ auth: authReducer, blog: blogReducer, authUser: authUserReducer, blogDetail: blogDetailReducer, blogMienBac: blogMienBacReducer })
+const rootReducer = combineReducers({
+  auth: authReducer,
+  blog: blogReducer
+})
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = configureStore({
   reducer: persistedReducer,
