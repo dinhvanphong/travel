@@ -135,7 +135,7 @@ const AdminBlog = () => {
                 type="radio"
                 value="mien-bac"
                 checked={blog.zones === 'mien-bac'}
-                onChange={() => setBlog({ ...blog, zones:'Miền Bắc' })}
+                onChange={() => setBlog({ ...blog, zones:'mien-bac' })}
                 name="colored-radio"
                 className="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500"
               />

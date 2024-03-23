@@ -11,7 +11,15 @@ import {
 
 } from './blogSlice'
 import { fetchBlogDetailError, fetchBlogDetailStart, fetchBlogDetailSuccess } from './blogDetailSlice'
-import { fetchBlogMienBacError, fetchBlogMienBacStart, fetchBlogMienBacSuccess } from './blogMienBac'
+import {
+  fetchBlogMienBacError, fetchBlogMienBacStart, fetchBlogMienBacSuccess
+} from './blogMienBac'
+import {
+  fetchBlogMienNamError, fetchBlogMienNamStart, fetchBlogMienNamSuccess
+} from './blogMienNam'
+import {
+  fetchBlogMienTrungError, fetchBlogMienTrungStart, fetchBlogMienTrungSuccess
+} from './blogMienTrung'
 import { API_ROOT } from '~/utils/conStants'
 
 import { toast } from 'react-toastify'
@@ -108,6 +116,26 @@ export const getMienBacBlogsApi =async(dispatch) => {
     dispatch(fetchBlogMienBacSuccess(res.data))
   } catch (error) {
     dispatch(fetchBlogMienBacError())
+  }
+}
+
+export const getMienTrungBlogsApi =async(dispatch) => {
+  dispatch(fetchBlogMienTrungStart())
+  try {
+    const res = await axios.get(`${API_ROOT}/v1/blogs/mien-trung`)
+    dispatch(fetchBlogMienTrungSuccess(res.data))
+  } catch (error) {
+    dispatch(fetchBlogMienTrungError())
+  }
+}
+
+export const getMienNamBlogsApi =async(dispatch) => {
+  dispatch(fetchBlogMienNamStart())
+  try {
+    const res = await axios.get(`${API_ROOT}/v1/blogs/mien-nam`)
+    dispatch(fetchBlogMienNamSuccess(res.data))
+  } catch (error) {
+    dispatch(fetchBlogMienNamError())
   }
 }
 // ok

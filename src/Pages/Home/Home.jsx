@@ -109,7 +109,7 @@ const Home = () => {
                 <div className='w-full h-full overflow-hidden rounded-md'>
                   <img className='w-full h-full object-cover group-hover/item:brightness-50 duration-300 cursor-pointer' src={i.imgList[0]} alt="ssad"/>
                 </div>
-                <p className='absolute text-white bottom-5 px-5 font-bold cursor-pointer'>{i.title}</p>
+                <Link to={`/${i.slug}`} className='absolute text-white bottom-5 px-5 font-bold cursor-pointer'>{i.title}</Link>
               </li>
             ))}
           </ul>

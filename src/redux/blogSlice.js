@@ -8,12 +8,6 @@ const blogSlice = createSlice({
       isFetching: false,
       error: false
     },
-    blogMienBac: {
-      blog: null,
-      isFetching: false,
-      success: false,
-      error: false
-    },
     createBlog: {
       isFetching: false,
       success: false,
@@ -31,19 +25,6 @@ const blogSlice = createSlice({
     fetchListBlogError: (state) => {
       state.listBlogs.isFetching = false
       state.listBlogs.error = true
-    },
-    fetchBlogMienBacStart: (state) => {
-      state.blogMienBac.isFetching = true
-    },
-    fetchBlogMienBacSuccess: (state, action) => {
-      state.blogMienBac.isFetching = false
-      state.blogMienBac.success = true
-      state.blogMienBac.blog = action.payload
-    },
-    fetchBlogMienBacError: (state) => {
-      state.blogMienBac.isFetching = false
-      state.blogMienBac.success = false
-      state.blogMienBac.error = true
     },
     createBlogStart: (state) => {
       state.createBlog.isFetching = true
@@ -66,10 +47,7 @@ export const {
   fetchListBlogError,
   createBlogError,
   createBlogStart,
-  createBlogSuccess,
-  fetchBlogMienBacError,
-  fetchBlogMienBacStart,
-  fetchBlogMienBacSuccess
+  createBlogSuccess
 } = blogSlice.actions
 
 export default blogSlice.reducer
