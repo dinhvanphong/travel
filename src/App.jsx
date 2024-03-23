@@ -17,7 +17,7 @@ const Login = lazy(() => import('./Admin/Pages/Login/Login'))
 // const Register = lazy(() => import('./Admin/Pages/Register/Register'))
 // User
 const Home = lazy(() => import('./Pages/Home/Home'))
-const Detail = lazy(() => import('./Pages/Detail/Detail'))
+// const Detail = lazy(() => import('./Pages/Detail/Detail'))
 const DetailBlog = lazy(() => import('./Pages/DetailBlog/DetailBlog'))
 const MienBac = lazy(() => import('./Pages/MienBac/MienBac'))
 const MienTrung = lazy(() => import('./Pages/MienTrung/MienTrung'))
@@ -90,7 +90,7 @@ function App() {
       <Route path='register' element={<Register/>}/>
 
       <Route path='/admin' element={<MainLayoutAdmin/>}>
-        <Route index element={<Login/>}/>
+        <Route index element={user ? <CreateBlog/> : <Login/>}/>
         <Route path='create-blog' element={user ? <CreateBlog/> : <Navigate to={'/admin'}/>}/>
         <Route path='blog-list' element={user ? <BlogList/> : <Navigate to={'/admin'}/>}/>
         <Route path='deleted-blog' element={user ? <DeletedBlog/> : <Navigate to={'/admin'}/>}/>

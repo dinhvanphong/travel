@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Comment from '~/components/Comment/Comment'
 import { getBlogDetailApi } from '~/redux/apiRequest'
@@ -7,11 +7,12 @@ import { useDispatch, useSelector } from 'react-redux'
 const DetailBlog = () => {
   const { slug } = useParams()
   const dispatch = useDispatch()
+  const [toggle, setToggle] = useState(true)
   const blog = useSelector((state) => state.blogDetail.blogDetail.blog)
 
   useEffect(() => {
     getBlogDetailApi(dispatch, slug)
-  }, [slug])
+  }, [slug, toggle])
 
 
   return (
@@ -41,7 +42,7 @@ const DetailBlog = () => {
 
         </div>
       </div>
-      <Comment/>
+      <Comment blog ={blog} toggle={toggle} setToggle={setToggle}/>
     </div>
   )
 }

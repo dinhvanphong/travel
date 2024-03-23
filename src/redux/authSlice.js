@@ -6,20 +6,19 @@ const authSlice = createSlice({
     login:{
       currentUser: null,
       isFetching: false,
-      error: false,
-      msg: null
+      error: false
     },
     register:{
       isFetching: false,
       error: false,
       success: false
     },
-    loginUser: {
-      currentUser: null,
-      isFetching: false,
-      error: false,
-      msg: null
-    }
+    // loginUser: {
+    //   currentUser: null,
+    //   isFetching: false,
+    //   error: false,
+    //   msg: null
+    // }
 
   },
   reducers:{
@@ -37,23 +36,6 @@ const authSlice = createSlice({
     loginFailed: (state) => {
       state.login.isFetching = false
       state.login.error = true
-      state.login.msg = 'Tên người dùng hoặc mật khẩu không chính xác!'
-    },
-    // LoginUser
-    loginUserStart: (state) => {
-      state.loginUser.isFetching = true
-      state.loginUser.msg = null
-    },
-    loginUserSuccess: (state, action) => {
-      state.loginUser.isFetching = false
-      state.loginUser.currentUser = action.payload
-      state.loginUser.error = false
-      state.loginUser.msg = null
-    },
-    loginUserFailed: (state) => {
-      state.loginUser.isFetching = false
-      state.loginUser.error = true
-      state.loginUser.msg = 'Tên người dùng hoặc mật khẩu không chính xác!'
     },
     // Tao tai khoan
     registerStart: (state) => {
@@ -96,12 +78,12 @@ export const {
   logoutFailed,
   logoutStart,
   logoutSuccess,
-  loginUserFailed,
-  loginUserStart,
-  loginUserSuccess,
-  logoutUserFailed,
-  logoutUserStart,
-  logoutUserSuccess
+  // loginUserFailed,
+  // loginUserStart,
+  // loginUserSuccess,
+  // logoutUserFailed,
+  // logoutUserStart,
+  // logoutUserSuccess
 } = authSlice.actions
 
 export default authSlice.reducer

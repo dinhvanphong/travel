@@ -14,7 +14,7 @@ import { AiFillDingtalkCircle, AiFillCrown, AiFillSecurityScan } from 'react-ico
 import ImgFooterBg from '~/img/footer-bg.png'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-
+// dinhvanphong
 
 const dataNavbar= [
   {
@@ -104,12 +104,12 @@ const Home = () => {
         <div className='flex-1'>
           <h2 className='uppercase text-xl font-bold py-5'>du lịch mới nhất</h2>
           <ul className='grid grid-cols-2 gap-3'>
-            {listBlogs && listBlogs.map(i => (
+            {listBlogs && listBlogs.slice(0, 4).reverse().map(i => (
               <li className='relative w-full h-[220px] group/item' key={i._id}>
                 <div className='w-full h-full overflow-hidden rounded-md'>
                   <img className='w-full h-full object-cover group-hover/item:brightness-50 duration-300 cursor-pointer' src={i.imgList[0]} alt="ssad"/>
                 </div>
-                <p className='absolute text-white bottom-5 px-5 font-bold cursor-pointer'>{i.title}</p>
+                <Link to={`/${i.slug}`} className='absolute text-white bottom-5 px-5 font-bold cursor-pointer'>{i.title}</Link>
               </li>
             ))}
           </ul>

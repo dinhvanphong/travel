@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { loginAdminApi } from '~/redux/apiRequest'
+
 
 const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const msg = useSelector(state => state.auth.login.msg)
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -21,8 +21,8 @@ const Login = () => {
     loginAdminApi(newUser, dispatch, navigate)
   }
   return (
-    <div className='flex items-center justify-center w-[80%]'>
-      <form className="border rounded-md h-fit p-6 w-[50%]" onSubmit={handleLogin}>
+    <div className='flex items-center justify-center w-[80%] bg-gradient-to-r from-white to-gray-800'>
+      <form className="border border-primary rounded-md h-fit p-6 w-[50%] bg-white/30" onSubmit={handleLogin}>
         <div className="mb-5">
           <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900">Nhập tên người dùng</label>
           <input
@@ -47,8 +47,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <p className='mt-2 text-red-500'>{msg}</p>
-        <button type="submit" className="mt-2 text-white bg-primary/80 hover:bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Đăng nhập</button>
+        <button type="submit" className="mt-2 text-white bg-primary/80 hover:bg-primary font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Đăng nhập</button>
       </form>
     </div>
   )
