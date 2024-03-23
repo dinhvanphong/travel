@@ -20,9 +20,9 @@ const Register = () => {
     registerUserApi(newUser, dispatch, navigate)
   }
   return (
-    <div className="flex flex-col items-center justify-center w-full h-[100vh] bg-[url('/src/img/logo.png')] bg-no-repeat bg-center">
-      <form className="border border-primary rounded-md h-fit p-6 w-[50vw] backdrop-blur-xl bg-slate-200/80 shadow-[0px_0px_90px_0px_#C0D6E8]" onSubmit={handleRegister}>
-        <h1 className='my-5 text-3xl text-primary text-center font-bold'>Đăng ký</h1>
+    <div className='flex flex-col items-center justify-center w-full h-[100vh]'>
+      <h1 className='my-5 text-3xl text-primary font-bold'>Đăng ký</h1>
+      <form className="border rounded-md h-fit p-6 w-[50vw]" onSubmit={handleRegister}>
         <div className="mb-5">
           <label htmlFor="username" className="block mb-2 text-sm font-medium text-primary">Nhập tên người dùng</label>
           <input
@@ -59,8 +59,9 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className='flex flex-col items-center gap-3'>
-          <button type="submit" className="mt-2 text-primary bg-white/90 hover:bg-white font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Đăng ký</button>
+        {/* <p className='mt-2 text-red-500'>{msg}</p> */}
+        <div className='flex items-center justify-between'>
+          <button type="submit" className="mt-2 text-white bg-primary hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Đăng ký</button>
           <div className='flex gap-3'>
             <Link to='/' className='cursor-pointer italic text-white hover:underline duration-200'>Trang chủ</Link>
             <Link to='/login' className='cursor-pointer italic text-white hover:underline duration-200'>Đăng nhập</Link>
