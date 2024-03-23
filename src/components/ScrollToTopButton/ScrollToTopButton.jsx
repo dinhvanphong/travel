@@ -1,4 +1,5 @@
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
+import { IoIosArrowUp } from 'react-icons/io'
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -26,7 +27,7 @@ const ScrollToTopButton = () => {
   }, [])
   return (
     <div className={`${isVisible ? '' : 'hidden'} fixed bottom-5 right-5 cursor-pointer w-8 h-8 bg-primary text-white text-center font-bold rounded flex items-center justify-center overflow-hidden`} onClick={scrollToTop}>
-      <span className='block font-bold scale-150'>^</span>
+      <span className='block font-bold'><IoIosArrowUp /></span>
     </div>
   )
 }
