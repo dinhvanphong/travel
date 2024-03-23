@@ -15,7 +15,7 @@ const Comment = () => {
             <img className='w-full h-full object-cover' src={imgUser} alt="user" />
           </div>
           <div>
-            <p className='font-bold'>phong</p>
+            <p className='font-bold text-primary'>phong</p>
             <p>dep lam fasuf fdsafsda fdsafosdf fsafsadf sfdsfsa fsdfsa</p>
           </div>
         </div>

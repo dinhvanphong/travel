@@ -98,7 +98,7 @@ const Header = () => {
               <button onClick={handleLogout} type="button" className="text-white outline outline-1 outline-primary bg-primary hover:bg-blue-500 rounded-lg text-sm px-4 py-2 text-center">Đăng xuất</button>
             </div>
             :<div className="flex gap-1 md:space-x-0 rtl:space-x-reverse">
-              <button type="button" className="text-gray-900 outline outline-1 rounded-lg text-sm px-4 py-2 text-center">Đăng ký</button>
+              <button onClick={() => navigate('/register')} type="button" className="text-gray-900 outline outline-1 rounded-lg text-sm px-4 py-2 text-center">Đăng ký</button>
               <button onClick={() => navigate('/login')} type="button" className="text-white outline outline-1 outline-primary bg-primary hover:bg-blue-500 rounded-lg text-sm px-4 py-2 text-center">Đăng nhập</button>
             </div>
           }

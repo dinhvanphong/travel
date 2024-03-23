@@ -6,8 +6,7 @@ const authUserSlice = createSlice({
     loginUser: {
       currentUser: null,
       isFetching: false,
-      error: false,
-      msg: null
+      error: false
     }
 
   },
@@ -26,7 +25,6 @@ const authUserSlice = createSlice({
     loginUserFailed: (state) => {
       state.loginUser.isFetching = false
       state.loginUser.error = true
-      state.loginUser.msg = 'Tên người dùng hoặc mật khẩu không chính xác!'
     },
     logoutUserStart: (state) => {
       state.loginUser.isFetching = true

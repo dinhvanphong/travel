@@ -23,7 +23,7 @@ const blogMienBacSlice = createSlice({
       state.blogMienBac.isFetching = false
       state.blogMienBac.success = false
       state.blogMienBac.error = true
-    }
+    },
   }
 })
 

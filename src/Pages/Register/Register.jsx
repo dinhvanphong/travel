@@ -19,11 +19,11 @@ const Register = () => {
     // loginUserApi(newUser, dispatch, navigate)
   }
   return (
-    <div className='flex flex-col items-center justify-center w-full h-[100vh]'>
-      <h1 className='my-5 text-3xl text-primary font-bold'>Đăng ký</h1>
-      <form className="border rounded-md h-fit p-6 w-[50vw]" onSubmit={handleRegister}>
+    <div className='flex flex-col items-center justify-center w-full h-[100vh] bg-gradient-to-r from-primary to-black'>
+      <form className="border rounded-md h-fit p-6 w-[50vw] ackdrop-blur-sm bg-white/30 shadow-[10px_10px_50px_0px_#00b0ff]" onSubmit={handleRegister}>
+        <h1 className='my-5 text-3xl text-white text-center font-bold'>Đăng ký</h1>
         <div className="mb-5">
-          <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900">Nhập tên người dùng</label>
+          <label htmlFor="username" className="block mb-2 text-sm font-medium text-white">Nhập tên người dùng</label>
           <input
             type="text"
             id="username"
@@ -35,7 +35,7 @@ const Register = () => {
           />
         </div>
         <div className="mb-5">
-          <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Nhập email</label>
+          <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">Nhập email</label>
           <input
             type="email"
             id="email"
@@ -47,7 +47,7 @@ const Register = () => {
           />
         </div>
         <div className="mb-1">
-          <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Nhập mật khẩu</label>
+          <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">Nhập mật khẩu</label>
           <input
             type="password"
             id="password"
@@ -59,11 +59,11 @@ const Register = () => {
           />
         </div>
         {/* <p className='mt-2 text-red-500'>{msg}</p> */}
-        <div className='flex items-center justify-between'>
-          <button type="submit" className="mt-2 text-white bg-primary hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Đăng ký</button>
+        <div className='flex flex-col items-center gap-3'>
+          <button type="submit" className="mt-2 text-primary bg-white/90 hover:bg-white font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Đăng nhập</button>
           <div className='flex gap-3'>
-            <Link to='/' className='cursor-pointer italic text-primary hover:underline duration-200'>Trang chủ</Link>
-            <Link to='/login' className='cursor-pointer italic text-primary hover:underline duration-200'>Đăng nhập</Link>
+            <Link to='/' className='cursor-pointer italic text-pink-900 hover:underline duration-200'>Trang chủ</Link>
+            <Link to='/login' className='cursor-pointer italic text-pink-900 hover:underline duration-200'>Đăng nhập</Link>
           </div>
         </div>
       </form>

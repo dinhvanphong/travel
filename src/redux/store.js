@@ -4,6 +4,8 @@ import blogReducer from './blogSlice'
 import authUserReducer from './authUserSlice'
 import blogDetailReducer from './blogDetailSlice'
 import blogMienBacReducer from './blogMienBac'
+import blogMienNamReducer from './blogMienNam'
+import blogMienTrungReducer from './blogMienTrung'
 
 import {
   persistStore,
@@ -23,7 +25,15 @@ const persistConfig = {
   storage
 }
 
-const rootReducer = combineReducers({ auth: authReducer, blog: blogReducer, authUser: authUserReducer, blogDetail: blogDetailReducer, blogMienBac: blogMienBacReducer })
+const rootReducer = combineReducers({
+  auth: authReducer,
+  blog: blogReducer,
+  authUser: authUserReducer,
+  blogDetail: blogDetailReducer,
+  blogMienBac: blogMienBacReducer,
+  blogMienNam: blogMienNamReducer,
+  blogMienTrung: blogMienTrungReducer
+})
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = configureStore({
   reducer: persistedReducer,
