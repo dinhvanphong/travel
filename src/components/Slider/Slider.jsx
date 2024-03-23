@@ -3,7 +3,6 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { getAllBlogsApi } from '~/redux/apiRequest'
-import ImgTest from '~/img/quang-ninh.jpg'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -66,7 +65,6 @@ const SliderHome = () => {
   useEffect(() => {
     getAllBlogsApi(dispatch)
   }, [])
-  console.log(listBlogs)
   const settings = {
     className: 'center',
     infinite: true,

@@ -28,11 +28,11 @@ const dataMenu = [
     to: 'deleted-blog',
     icon: <RiDeleteBin6Fill />
   },
-  {
-    title: 'Quản lý tài khoản',
-    to: 'account',
-    icon: <MdSwitchAccount />
-  }
+  // {
+  //   title: 'Quản lý tài khoản',
+  //   to: 'account',
+  //   icon: <MdSwitchAccount />
+  // }
 ]
 const active = 'bg-gray-700 text-[#ffffff]'
 const normal = ''

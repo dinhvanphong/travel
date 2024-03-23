@@ -13,7 +13,7 @@ const SidebarRight = () => {
         <p className='uppercase px-3 py-2 font-semibold w-fit'>Bài viết mới nhất</p>
         <span className='block w-full h-[2px] bg-primary'></span>
         <ul>
-          {listBlogs && listBlogs.map(i => (
+          {listBlogs && listBlogs.slice(0, 5).reverse().map(i => (
             <Link to={`/${i.slug}`} key={i._id}>
               <li className='' >
                 <p className='hover:text-primary duration-200 font-normal text-[15px] text-[#333] py-4 cursor-pointer'>{i.title}</p>
