@@ -1,7 +1,11 @@
 import NewBlogs from '~/components/NewBlogs/NewBlogs'
+import { useEffect, useState } from 'react'
+
+
 import SliderHome from '~/components/Slider/Slider'
 import ImgTest from '~/img/du-lich.webp'
 import ImgTest1 from '~/img/test.jpg'
+import { getAllBlogsApi } from '~/redux/apiRequest'
 import {
   FaYoutube,
   FaFacebookF,
@@ -13,8 +17,7 @@ import {
 import { AiFillDingtalkCircle, AiFillCrown, AiFillSecurityScan } from 'react-icons/ai'
 import ImgFooterBg from '~/img/footer-bg.png'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-
+import { useSelector, useDispatch } from 'react-redux'
 
 const dataNavbar= [
   {
@@ -64,6 +67,13 @@ const dataSocial= [
 const Home = () => {
   const backgroundImageUrl = `url(${ImgFooterBg})`
   const listBlogs = useSelector((state) => state.blog.listBlogs.allBlogs)
+  const dispatch = useDispatch()
+
+
+  useEffect(() => {
+    console.log('1')
+    getAllBlogsApi(dispatch)
+  }, [])
 
   return (
     <div className='mt-[100px] w-[1400px] max-w-full m-auto min-h-80 mb-10 bg-[#040404b6] bg-fixed bg-bottom' style={{ backgroundImage: backgroundImageUrl }}>
@@ -104,12 +114,12 @@ const Home = () => {
         <div className='flex-1'>
           <h2 className='uppercase text-xl font-bold py-5'>du lịch mới nhất</h2>
           <ul className='grid grid-cols-2 gap-3'>
-            {listBlogs && listBlogs.map(i => (
+            {listBlogs && listBlogs.slice(0, 4).reverse().map(i => (
               <li className='relative w-full h-[220px] group/item' key={i._id}>
                 <div className='w-full h-full overflow-hidden rounded-md'>
                   <img className='w-full h-full object-cover group-hover/item:brightness-50 duration-300 cursor-pointer' src={i.imgList[0]} alt="ssad"/>
                 </div>
-                <p className='absolute text-white bottom-5 px-5 font-bold cursor-pointer'>{i.title}</p>
+                <Link to={`/${i.slug}`} className='absolute text-white bottom-5 px-5 font-bold cursor-pointer'>{i.title}</Link>
               </li>
             ))}
           </ul>

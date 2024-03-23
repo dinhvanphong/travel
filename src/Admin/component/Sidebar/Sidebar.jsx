@@ -24,15 +24,15 @@ const dataMenu = [
     icon: <FaTableList />
   },
   {
-    title: 'Bài viết đã xóa',
+    title: 'Danh sách bài viết đã ẩn',
     to: 'deleted-blog',
     icon: <RiDeleteBin6Fill />
   },
-  {
-    title: 'Quản lý tài khoản',
-    to: 'account',
-    icon: <MdSwitchAccount />
-  }
+  // {
+  //   title: 'Quản lý tài khoản',
+  //   to: 'account',
+  //   icon: <MdSwitchAccount />
+  // }
 ]
 const active = 'bg-gray-700 text-[#ffffff]'
 const normal = ''
@@ -62,7 +62,6 @@ const Sidebar = () => {
               <li key={index}>
                 <NavLink
                   to={user ? i.to : '/admin'}
-                  // className="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group">
                   className={({ isActive }) => `${isActive ? active : normal + 'text-white hover:bg-gray-700'} flex items-center p-2 rounded-lg group`}
                 >
                   {i.icon}
