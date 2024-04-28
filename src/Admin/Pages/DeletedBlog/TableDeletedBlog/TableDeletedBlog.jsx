@@ -6,7 +6,8 @@ import Swal from 'sweetalert2'
 const TableDeletedBlog = () => {
   const dispatch = useDispatch()
   const [search, setSearch] = useState('')
-  const allBlogs = useSelector((state) => state.blogDelete.blogDelete.blog)
+  const allBlogs = useSelector((state) => state.blog.listBlogsDelete.allBlogs)
+
 
   useEffect(() => {
     getAllBlogsDeleteApi(dispatch)
@@ -57,7 +58,7 @@ const TableDeletedBlog = () => {
             />
           </div>
         </form>
-  {/* TABLE */}
+        {/* TABLE */}
         <div className="relative shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
@@ -108,6 +109,7 @@ const TableDeletedBlog = () => {
               ))}
             </tbody>
           </table>
+          {/* {allBlogs.length <= 0 && <p className='text-center py-3'>Không có bài viết đã xóa</p>} */}
         </div>
       </div>
     </>

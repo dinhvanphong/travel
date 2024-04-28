@@ -15,7 +15,6 @@ import ImgFooterBg from '~/img/footer-bg.png'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-
 const dataNavbar= [
   {
     title: 'Miền Bắc',

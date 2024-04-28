@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 
 const MienNam = () => {
   const dispatch = useDispatch()
-  const blogMienNam = useSelector((state) => state.blogMienNam.blogMienNam.blog)
+  const blogMienNam = useSelector((state) => state.blog.blogMienNam.blogs)
   useEffect(() => {
     getMienNamBlogsApi(dispatch)
   }, [])

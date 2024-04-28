@@ -19,15 +19,16 @@ const LoginUser = () => {
     loginUserApi(newUser, dispatch, navigate)
   }
   return (
-    <div className="flex flex-col items-center justify-center w-full h-[100vh] bg-[url('/src/img/logo.png')] bg-no-repeat bg-center">
-      <form className="border border-primary rounded-md h-fit p-6 w-[50vw] backdrop-blur-xl bg-slate-200/80 shadow-[0px_0px_90px_0px_#C0D6E8]" onSubmit={handleLogin}>
-        <h1 className='my-5 text-3xl text-primary font-bold text-center'>Đăng nhập</h1>
+    <div className="flex flex-col items-center justify-center w-full h-[100vh]">
+      <img className='absolute w-full h-full object-cover' src="/src/img/auth.jpg" alt="adsa" />
+      <form className="border border-white rounded-md h-fit p-6 w-[50vw] backdrop-blur-sm bg-transparent" onSubmit={handleLogin}>
+        <h1 className='my-5 text-3xl text-white text-center font-bold'>Đăng nhập</h1>
         <div className="mb-5">
-          <label htmlFor="username" className="block mb-2 text-sm font-medium text-primary">Nhập tên người dùng</label>
+          <label htmlFor="username" className="block mb-2 text-sm font-medium text-white">Nhập tên người dùng</label>
           <input
             type="text"
             id="username"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            className="bg-white/30 border border-primary text-white placeholder:text-white/80 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-[0px_0px_10px_#424242]"
             placeholder="Nhập tên người dùng..."
             required
             value={username}
@@ -35,11 +36,11 @@ const LoginUser = () => {
           />
         </div>
         <div className="mb-1">
-          <label htmlFor="password" className="block mb-2 text-sm font-medium text-primary">Nhập mật khẩu</label>
+          <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">Nhập mật khẩu</label>
           <input
             type="password"
             id="password"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            className="bg-white/30 border border-primary text-white placeholder:text-white/80 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-[0px_0px_10px_#424242]"
             placeholder="Nhập mật khẩu..."
             required
             value={password}

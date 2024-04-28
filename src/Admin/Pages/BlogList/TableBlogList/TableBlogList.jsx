@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllBlogsApi, hiddenBlogApi } from '~/redux/apiRequest'
+import { getAllBlogsApi, getAllBlogsPaginationApi, hiddenBlogApi } from '~/redux/apiRequest'
 import ModalEditBlog from '~/Admin/component/ModalEditBlog/ModalEditBlog'
 import Swal from 'sweetalert2'
 
@@ -8,12 +8,29 @@ const TableBlogList = () => {
   const dispatch = useDispatch()
   const [isOpenModalEdit, setIsOpenModalEdit] = useState(false)
   const [blog, setBlog] = useState({})
+  const [listBlogPagination, setListBlogPagination] = useState([])
+  const [page, setPage] = useState(1)
   const [search, setSearch] = useState('')
-  const allBlogs = useSelector((state) => state.blog.listBlogs.allBlogs)
+  // const allBlogs = useSelector((state) => state.blog.listBlogs.allBlogs)
+  let LIMIT = 5
+  const totalBlog = listBlogPagination.totalBlog
+  const totalPage = Math.ceil(totalBlog / LIMIT || 0)
+  // const totalPage = Math.ceil(6)
+
+  // console.log(totalPage)
+
+
+  // useEffect(() => {
+  //   getAllBlogsApi(dispatch)
+  // }, [blog])
 
   useEffect(() => {
-    getAllBlogsApi(dispatch)
-  }, [blog])
+    getAllBlogsPaginationApi(page, LIMIT)
+      .then(data => setListBlogPagination(data))
+  }, [page, blog])
+
+  console.log(listBlogPagination)
+
 
   const handleClickEdit = (i) => {
     setBlog(i)
@@ -33,7 +50,8 @@ const TableBlogList = () => {
       showLoaderOnConfirm: () => !Swal.isLoading(),
       preConfirm:async () => {
         await hiddenBlogApi(id)
-          .then(() => getAllBlogsApi(dispatch))
+          // .then(() => getAllBlogsPaginationApi(page, LIMIT))
+          .then(() => setBlog(Math.random()))
       }
     })
   }
@@ -60,7 +78,7 @@ const TableBlogList = () => {
             />
           </div>
         </form>
-  {/* TABLE */}
+        {/* TABLE */}
         <div className="relative shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
@@ -83,7 +101,7 @@ const TableBlogList = () => {
               </tr>
             </thead>
             <tbody>
-              {allBlogs && allBlogs.filter(item => {
+              {listBlogPagination.listBlogPage && listBlogPagination.listBlogPage.filter(item => {
                 return search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)
               }).map(blog => (
                 <tr key={blog._id} className="grid grid-cols-12 bg-white border-b hover:bg-gray-50 w-full h-[90px]">
@@ -114,7 +132,39 @@ const TableBlogList = () => {
               ))}
             </tbody>
           </table>
+          {listBlogPagination.length <= 0 || listBlogPagination.listBlogPage.length <= 0 && <p className='text-center py-3'>Không có bài viết</p>}
+          {/* {console.log('1', listBlogPagination.listBlogPage.length)} */}
         </div>
+        {/* pagination */}
+        <nav aria-label="Page navigation example" className='w-full text-center mt-5'>
+          <ul className="inline-flex -space-x-px text-sm">
+            {page === 1
+              ?
+              <li>
+                <p className=" disabled cursor-not-allowed flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 border border-e-1 border-gray-300 rounded-s-lg bg-gray-100 hover:text-gray-700">Previous</p>
+              </li>
+              :
+              <li>
+                <p onClick={() => setPage(page - 1)} className="cursor-pointer flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-1 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">Previous</p>
+              </li>
+            }
+            {Array(totalPage).fill(0).map((_, ind) => (
+              <li key={ind}>
+                <p onClick={() => setPage(ind + 1)} className={`${page === ind + 1 ? 'bg-primary text-white' : 'bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-700'} cursor-pointer flex items-center justify-center px-3 h-8 leading-tight border border-gray-300 rounded-e-lg`}>{ind + 1}</p>
+              </li>
+            ))}
+            {page === totalPage
+              ?
+              <li>
+                <p className="disabled cursor-not-allowed flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 border border-e-1 border-gray-300 rounded-s-lg bg-gray-100 hover:text-gray-700">Next</p>
+              </li>
+              :
+              <li>
+                <p onClick={() => setPage(page + 1)} className="cursor-pointer flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-1 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">Next</p>
+              </li>
+            }
+          </ul>
+        </nav>
       </div>
       {isOpenModalEdit && <ModalEditBlog blogEdit={blog} setBlogEdit={setBlog} setIsOpenModalEdit={setIsOpenModalEdit}/> }
     </>

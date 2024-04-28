@@ -8,7 +8,7 @@ import { commentApi } from '~/redux/apiRequest'
 const Comment = (props) => {
   const { blog, toggle, setToggle } = props
   const navigate = useNavigate()
-  const user = useSelector((state) => state.authUser.loginUser.currentUser)
+  const user = useSelector((state) => state.auth.loginUser.currentUser)
   const [comment, setComment] = useState('')
   const handleComment =async () => {
     if (user) {
@@ -34,13 +34,13 @@ const Comment = (props) => {
 
       <div className='w-full mb-5'>
         {blog.comments.map(i => (
-          <div key={i._id} className='w-full min-h-5 flex items-center gap-3 my-4'>
+          <div key={i._id} className='w-full min-h-5 flex items-center gap-3 my-4 p-2 rounded-md bg-primary/5'>
             <div className='w-11 h-11 border border-primary rounded-[50%] overflow-hidden p-1 bg-[#efecec]'>
               <img className='w-full h-full object-cover' src={imgUser} alt="user" />
             </div>
             <div>
               <p className='font-bold text-primary'>{i.username}</p>
-              <p>{i.comment}</p>
+              <p className='text-[#666]'>{i.comment}</p>
             </div>
           </div>
         ))}

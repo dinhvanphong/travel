@@ -6,7 +6,7 @@ import { getMienTrungBlogsApi } from '~/redux/apiRequest'
 
 const MienTrung = () => {
   const dispatch = useDispatch()
-  const blogMienTrung = useSelector((state) => state.blogMienTrung.blogMienTrung.blog)
+  const blogMienTrung = useSelector((state) => state.blog.blogMienTrung.blogs)
   useEffect(() => {
     getMienTrungBlogsApi(dispatch)
   }, [])

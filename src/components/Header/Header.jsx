@@ -57,7 +57,7 @@ const active = 'text-primary'
 const Header = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const user = useSelector((state) => state.authUser.loginUser.currentUser)
+  const user = useSelector((state) => state.auth.loginUser.currentUser)
   const id = user?._id
   // const [user, setUser] = useState(true)
   const handleLogout = () => {
@@ -77,7 +77,6 @@ const Header = () => {
                 <NavLink
                   to={i.to}
                   className={({ isActive }) => `${isActive ? active : ''} block py-2 px-3 font-bold text-gray-900 rounded hover:text-primary duration-200`}
-
                 >
                   <p className="">{i.title}</p>
                 </NavLink>

@@ -2,28 +2,21 @@ import axios from 'axios'
 import {
   loginFailed, loginStart, loginSuccess,
   registerSuccess, registerFailed, registerStart,
-  logoutStart, logoutFailed, logoutSuccess
+  logoutStart, logoutFailed, logoutSuccess,
+  loginUserFailed, loginUserSuccess, loginUserStart,
+  logoutUserFailed, logoutUserStart, logoutUserSuccess
 } from './authSlice'
-import { loginUserFailed, loginUserSuccess, loginUserStart, logoutUserFailed, logoutUserStart, logoutUserSuccess } from './authUserSlice'
 import {
   fetchListBlogError, fetchListBlogStart, fetchListBlogSuccess,
-  createBlogError, createBlogStart, createBlogSuccess
-} from './blogSlice'
-import {
-  fetchBlogDeleteError, fetchBlogDeleteStart, fetchBlogDeleteSuccess
-} from './blogDeleteSlice'
-import { fetchBlogDetailError, fetchBlogDetailStart, fetchBlogDetailSuccess } from './blogDetailSlice'
-import {
-  fetchBlogMienBacError, fetchBlogMienBacStart, fetchBlogMienBacSuccess
-} from './blogMienBac'
-import {
-  fetchBlogMienNamError, fetchBlogMienNamStart, fetchBlogMienNamSuccess
-} from './blogMienNam'
-import {
+  createBlogError, createBlogStart, createBlogSuccess,
+  fetchListBlogDeleteError, fetchListBlogDeleteStart, fetchListBlogDeleteSuccess,
+  fetchBlogDetailError, fetchBlogDetailStart, fetchBlogDetailSuccess,
+  fetchBlogMienBacError, fetchBlogMienBacStart, fetchBlogMienBacSuccess,
+  fetchBlogMienNamError, fetchBlogMienNamStart, fetchBlogMienNamSuccess,
   fetchBlogMienTrungError, fetchBlogMienTrungStart, fetchBlogMienTrungSuccess
-} from './blogMienTrung'
-import { API_ROOT } from '~/utils/conStants'
+} from './blogSlice'
 
+import { API_ROOT } from '~/utils/conStants'
 import { toast } from 'react-toastify'
 
 
@@ -102,16 +95,36 @@ export const getAllBlogsApi =async(dispatch) => {
     dispatch(fetchListBlogError())
   }
 }
+
 // ok
-export const getAllBlogsDeleteApi =async(dispatch) => {
-  dispatch(fetchBlogDeleteStart())
+export const getAllBlogsPaginationApi = async(page, limit) => {
   try {
-    const res = await axios.get(`${API_ROOT}/v1/blogs/deleted`)
-    dispatch(fetchBlogDeleteSuccess(res.data))
+    const res = await axios.get(`${API_ROOT}/v1/blogs/pagination?page=${page}&limit=${limit}`)
+    return res.data
   } catch (error) {
-    dispatch(fetchBlogDeleteError())
+    console.log(error)
   }
 }
+// ok
+export const getAllBlogsDeleteApi =async(dispatch) => {
+  dispatch(fetchListBlogDeleteStart())
+  try {
+    const res = await axios.get(`${API_ROOT}/v1/blogs/deleted`)
+    dispatch(fetchListBlogDeleteSuccess(res.data))
+  } catch (error) {
+    dispatch(fetchListBlogDeleteError())
+  }
+}
+// ok
+// export const getAllBlogsDeleteApi =async(dispatch) => {
+//   dispatch(fetchBlogDeleteStart())
+//   try {
+//     const res = await axios.get(`${API_ROOT}/v1/blogs/deleted`)
+//     dispatch(fetchBlogDeleteSuccess(res.data))
+//   } catch (error) {
+//     dispatch(fetchBlogDeleteError())
+//   }
+// }
 // ok
 export const getBlogDetailApi =async(dispatch, slug) => {
   dispatch(fetchBlogDetailStart())

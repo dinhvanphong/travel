@@ -6,7 +6,7 @@ import { getMienBacBlogsApi } from '~/redux/apiRequest'
 const MienBac = () => {
   const dispatch = useDispatch()
 
-  const blogMienBac = useSelector((state) => state.blogMienBac.blogMienBac.blog)
+  const blogMienBac = useSelector((state) => state.blog.blogMienBac.blogs)
 
   useEffect(() => {
     getMienBacBlogsApi(dispatch)

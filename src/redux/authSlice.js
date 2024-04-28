@@ -13,25 +13,22 @@ const authSlice = createSlice({
       error: false,
       success: false
     },
-    // loginUser: {
-    //   currentUser: null,
-    //   isFetching: false,
-    //   error: false,
-    //   msg: null
-    // }
+    loginUser: {
+      currentUser: null,
+      isFetching: false,
+      error: false
+    }
 
   },
   reducers:{
   // LoginAdmin
     loginStart: (state) => {
       state.login.isFetching = true
-      state.login.msg = null
     },
     loginSuccess: (state, action) => {
       state.login.isFetching = false
       state.login.currentUser = action.payload
       state.login.error = false
-      state.login.msg = null
     },
     loginFailed: (state) => {
       state.login.isFetching = false
@@ -64,6 +61,34 @@ const authSlice = createSlice({
       state.login.isFetching = false
       state.login.error = true
     },
+    // login user
+    loginUserStart: (state) => {
+      state.loginUser.isFetching = true
+      state.loginUser.msg = null
+    },
+    loginUserSuccess: (state, action) => {
+      state.loginUser.isFetching = false
+      state.loginUser.currentUser = action.payload
+      state.loginUser.error = false
+      state.loginUser.msg = null
+    },
+    loginUserFailed: (state) => {
+      state.loginUser.isFetching = false
+      state.loginUser.error = true
+    },
+    // logout user
+    logoutUserStart: (state) => {
+      state.loginUser.isFetching = true
+    },
+    logoutUserSuccess: (state) => {
+      state.loginUser.isFetching = false
+      state.loginUser.currentUser = null
+      state.loginUser.error = false
+    },
+    logoutUserFailed: (state) => {
+      state.loginUser.isFetching = false
+      state.loginUser.error = true
+    }
 
   }
 })
@@ -78,12 +103,12 @@ export const {
   logoutFailed,
   logoutStart,
   logoutSuccess,
-  // loginUserFailed,
-  // loginUserStart,
-  // loginUserSuccess,
-  // logoutUserFailed,
-  // logoutUserStart,
-  // logoutUserSuccess
+  loginUserFailed,
+  loginUserStart,
+  loginUserSuccess,
+  logoutUserFailed,
+  logoutUserStart,
+  logoutUserSuccess
 } = authSlice.actions
 
 export default authSlice.reducer

@@ -62,6 +62,9 @@ function SlideItem(props) {
 const SliderHome = () => {
   const dispatch = useDispatch()
   const listBlogs = useSelector((state) => state.blog.listBlogs.allBlogs)
+
+  let newListBlog = listBlogs.slice()
+  newListBlog = newListBlog.reverse()
   useEffect(() => {
     getAllBlogsApi(dispatch)
   }, [])
@@ -80,7 +83,7 @@ const SliderHome = () => {
   return (
     <div className="h-[400px] w-full bg-white">
       <Slider {...settings}>
-        {listBlogs && listBlogs.map(i => <SlideItem key={i._id} i={i}/>)}
+        {newListBlog && newListBlog.slice(0, 10).map(i => <SlideItem key={i._id} i={i}/>)}
       </Slider>
     </div>
   )
