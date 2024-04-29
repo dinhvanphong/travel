@@ -8,22 +8,11 @@ const blogSlice = createSlice({
       isFetching: false,
       error: false
     },
-    listBlogsDelete: {
-      allBlogs: null,
-      isFetching: false,
-      error: false
-    },
     createBlog: {
       isFetching: false,
       success: false,
       error: false
     },
-    // blogDetail: {
-    //   blog: null,
-    //   isFetching: false,
-    //   success: false,
-    //   error: false
-    // },
     blogMienBac: {
       blogs: null,
       isFetching: false,
@@ -56,18 +45,6 @@ const blogSlice = createSlice({
       state.listBlogs.isFetching = false
       state.listBlogs.error = true
     },
-    //  List blog delete
-    fetchListBlogDeleteStart: (state) => {
-      state.listBlogsDelete.isFetching = true
-    },
-    fetchListBlogDeleteSuccess: (state, action) => {
-      state.listBlogsDelete.isFetching = false
-      state.listBlogsDelete.allBlogs = action.payload
-    },
-    fetchListBlogDeleteError: (state) => {
-      state.listBlogsDelete.isFetching = false
-      state.listBlogsDelete.error = true
-    },
     // Create blog
     createBlogStart: (state) => {
       state.createBlog.isFetching = true
@@ -81,20 +58,6 @@ const blogSlice = createSlice({
       state.createBlog.success = false
       state.createBlog.error = true
     },
-    // Blog detail
-    // fetchBlogDetailStart: (state) => {
-    //   state.blogDetail.isFetching = true
-    // },
-    // fetchBlogDetailSuccess: (state, action) => {
-    //   state.blogDetail.isFetching = false
-    //   state.blogDetail.success = true
-    //   state.blogDetail.blog = action.payload
-    // },
-    // fetchBlogDetailError: (state) => {
-    //   state.blogDetail.isFetching = false
-    //   state.blogDetail.success = false
-    //   state.blogDetail.error = true
-    // },
     // Blog mienbac
     fetchBlogMienBacStart: (state) => {
       state.blogMienBac.isFetching = true
@@ -136,15 +99,13 @@ const blogSlice = createSlice({
       state.blogMienTrung.isFetching = false
       state.blogMienTrung.success = false
       state.blogMienTrung.error = true
-    },
+    }
   }
 })
 
 export const {
   fetchListBlogStart, fetchListBlogSuccess, fetchListBlogError,
-  fetchListBlogDeleteError, fetchListBlogDeleteStart, fetchListBlogDeleteSuccess,
   createBlogError, createBlogStart, createBlogSuccess,
-  // fetchBlogDetailError, fetchBlogDetailStart, fetchBlogDetailSuccess,
   fetchBlogMienBacError, fetchBlogMienBacStart, fetchBlogMienBacSuccess,
   fetchBlogMienNamError, fetchBlogMienNamStart, fetchBlogMienNamSuccess,
   fetchBlogMienTrungError, fetchBlogMienTrungStart, fetchBlogMienTrungSuccess

@@ -1,21 +1,19 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { getAllBlogsDeleteApi, deleteBlogApi, restoreBlogApi } from '~/redux/apiRequest'
 import Swal from 'sweetalert2'
 
 const TableDeletedBlog = () => {
-  const dispatch = useDispatch()
   const [search, setSearch] = useState('')
-  const allBlogs = useSelector((state) => state.blog.listBlogsDelete.allBlogs)
+  const [blog, setBlog] = useState([])
 
 
   useEffect(() => {
-    getAllBlogsDeleteApi(dispatch)
-  }, [])
+    getAllBlogsDeleteApi()
+      .then((data) => setBlog(data))
+  }, [blog])
 
   const handleRestore = async (id) => {
     await restoreBlogApi(id)
-      .then(() => getAllBlogsDeleteApi(dispatch))
   }
 
   const handleClickDelete = (id) => {
@@ -31,7 +29,6 @@ const TableDeletedBlog = () => {
       showLoaderOnConfirm: () => !Swal.isLoading(),
       preConfirm:async () => {
         await deleteBlogApi(id)
-          .then(() => getAllBlogsDeleteApi(dispatch))
       }
     })
   }
@@ -81,9 +78,9 @@ const TableDeletedBlog = () => {
               </tr>
             </thead>
             <tbody>
-              {allBlogs && allBlogs.filter(item => {
+              {blog && blog.filter(item => {
                 return search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)
-              }).map(blog => (
+              })?.map(blog => (
                 <tr key={blog._id} className="grid grid-cols-12 bg-white border-b hover:bg-gray-50 w-full h-[90px]">
                   <th className="col-span-4 px-6 py-4 font-medium text-gray-900">
                     <p className='h-full w-full line-clamp-3 overflow-hidden'>{blog?.title}</p>
@@ -110,6 +107,7 @@ const TableDeletedBlog = () => {
             </tbody>
           </table>
           {/* {allBlogs.length <= 0 && <p className='text-center py-3'>Không có bài viết đã xóa</p>} */}
+          {blog.length <= 0 && <p className='text-center py-3'>Không có bài viết</p>}
         </div>
       </div>
     </>
