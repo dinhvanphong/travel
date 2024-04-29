@@ -8,8 +8,6 @@ import {
 import {
   fetchListBlogError, fetchListBlogStart, fetchListBlogSuccess,
   createBlogError, createBlogStart, createBlogSuccess,
-  fetchListBlogDeleteError, fetchListBlogDeleteStart, fetchListBlogDeleteSuccess,
-  // fetchBlogDetailError, fetchBlogDetailStart, fetchBlogDetailSuccess,
   fetchBlogMienBacError, fetchBlogMienBacStart, fetchBlogMienBacSuccess,
   fetchBlogMienNamError, fetchBlogMienNamStart, fetchBlogMienNamSuccess,
   fetchBlogMienTrungError, fetchBlogMienTrungStart, fetchBlogMienTrungSuccess
@@ -104,14 +102,26 @@ export const getAllBlogsPaginationApi = async(page, limit) => {
     console.log(error)
   }
 }
+
+export const getFindBlogApi = async(value) => {
+  try {
+    const res = await axios.get(`${API_ROOT}/v1/blogs/find`, {
+      params: {
+        q: value
+      }
+    })
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
 // ok
-export const getAllBlogsDeleteApi =async(dispatch) => {
-  dispatch(fetchListBlogDeleteStart())
+export const getAllBlogsDeleteApi =async() => {
   try {
     const res = await axios.get(`${API_ROOT}/v1/blogs/deleted`)
-    dispatch(fetchListBlogDeleteSuccess(res.data))
+    return res.data
   } catch (error) {
-    dispatch(fetchListBlogDeleteError())
+    console.log(error)
   }
 }
 // ok

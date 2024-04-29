@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import SliderHome from '~/components/Slider/Slider'
 import ImgTest from '~/img/du-lich.webp'
 import ImgTest1 from '~/img/test.jpg'
-import { getAllBlogsApi } from '~/redux/apiRequest'
+import { getAllBlogsApi, getFindBlogApi } from '~/redux/apiRequest'
 import {
   FaYoutube,
   FaFacebookF,
@@ -69,11 +69,16 @@ const Home = () => {
   const listBlogs = useSelector((state) => state.blog.listBlogs.allBlogs)
   const dispatch = useDispatch()
 
+  let newListBlog = listBlogs.slice()
+  newListBlog = newListBlog.reverse()
+
 
   useEffect(() => {
     console.log('1')
     getAllBlogsApi(dispatch)
   }, [])
+
+
 
   return (
     <div className='mt-[100px] w-[1400px] max-w-full m-auto min-h-80 mb-10 bg-[#040404b6] bg-fixed bg-bottom' style={{ backgroundImage: backgroundImageUrl }}>
@@ -114,7 +119,7 @@ const Home = () => {
         <div className='flex-1'>
           <h2 className='uppercase text-xl font-bold py-5'>du lịch mới nhất</h2>
           <ul className='grid grid-cols-2 gap-3'>
-            {listBlogs && listBlogs.slice(0, 4).reverse().map(i => (
+            {newListBlog && newListBlog.slice(0, 4).map(i => (
               <li className='relative w-full h-[220px] group/item' key={i._id}>
                 <div className='w-full h-full overflow-hidden rounded-md'>
                   <img className='w-full h-full object-cover group-hover/item:brightness-50 duration-300 cursor-pointer' src={i.imgList[0]} alt="ssad"/>

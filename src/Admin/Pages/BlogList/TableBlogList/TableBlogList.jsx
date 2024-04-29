@@ -1,28 +1,18 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getAllBlogsApi, getAllBlogsPaginationApi, hiddenBlogApi } from '~/redux/apiRequest'
+import { getAllBlogsPaginationApi, hiddenBlogApi } from '~/redux/apiRequest'
 import ModalEditBlog from '~/Admin/component/ModalEditBlog/ModalEditBlog'
 import Swal from 'sweetalert2'
 
 const TableBlogList = () => {
-  const dispatch = useDispatch()
   const [isOpenModalEdit, setIsOpenModalEdit] = useState(false)
   const [blog, setBlog] = useState({})
   const [listBlogPagination, setListBlogPagination] = useState([])
   const [page, setPage] = useState(1)
   const [search, setSearch] = useState('')
-  // const allBlogs = useSelector((state) => state.blog.listBlogs.allBlogs)
+
   let LIMIT = 5
   const totalBlog = listBlogPagination.totalBlog
   const totalPage = Math.ceil(totalBlog / LIMIT || 0)
-  // const totalPage = Math.ceil(6)
-
-  // console.log(totalPage)
-
-
-  // useEffect(() => {
-  //   getAllBlogsApi(dispatch)
-  // }, [blog])
 
   useEffect(() => {
     getAllBlogsPaginationApi(page, LIMIT)
@@ -50,7 +40,6 @@ const TableBlogList = () => {
       showLoaderOnConfirm: () => !Swal.isLoading(),
       preConfirm:async () => {
         await hiddenBlogApi(id)
-          // .then(() => getAllBlogsPaginationApi(page, LIMIT))
           .then(() => setBlog(Math.random()))
       }
     })
@@ -106,15 +95,12 @@ const TableBlogList = () => {
               }).map(blog => (
                 <tr key={blog._id} className="grid grid-cols-12 bg-white border-b hover:bg-gray-50 w-full h-[90px]">
                   <th className="col-span-4 px-6 py-4 font-medium text-gray-900">
-                    {/* {blog?.title} */}
                     <p className='h-full w-full line-clamp-3 overflow-hidden'>{blog?.title}</p>
                   </th>
                   <td className="col-span-3 px-6 py-4">
-                    {/* {blog?.description} */}
                     <p className='h-full w-full line-clamp-3 overflow-hidden'>{blog?.description}</p>
                   </td>
                   <td className="col-span-2 px-6 py-4 truncate">
-                    {/* {blog?.time} */}
                     <div className='w-full h-full'>
                       <img className='object-cover w-full h-full' src={blog.imgList[0]} alt="anh" />
                     </div>

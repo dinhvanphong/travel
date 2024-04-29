@@ -4,8 +4,6 @@ import { createBlogApi } from '~/redux/apiRequest'
 import { useDispatch} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-// import jwt_decode from 'jwt-decode'
-
 import TextArea from '~/Admin/component/TextArea/TextArea'
 import axios from 'axios'
 
