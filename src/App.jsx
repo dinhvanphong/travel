@@ -17,13 +17,13 @@ const Login = lazy(() => import('./Admin/Pages/Login/Login'))
 // const Register = lazy(() => import('./Admin/Pages/Register/Register'))
 // User
 const Home = lazy(() => import('./Pages/Home/Home'))
-// const Detail = lazy(() => import('./Pages/Detail/Detail'))
 const DetailBlog = lazy(() => import('./Pages/DetailBlog/DetailBlog'))
 const MienBac = lazy(() => import('./Pages/MienBac/MienBac'))
 const MienTrung = lazy(() => import('./Pages/MienTrung/MienTrung'))
 const MienNam = lazy(() => import('./Pages/MienNam/MienNam'))
 import LoginUser from '~/Pages/LoginUser/LoginUser'
 import Register from '~/Pages/Register/Register'
+import NotFound from './Pages/NotFound/NotFound'
 import ScrollToTopButton from '~/components/ScrollToTopButton/ScrollToTopButton'
 
 
@@ -95,6 +95,7 @@ function App() {
         <Route path='blog-list' element={user ? <BlogList/> : <Navigate to={'/admin'}/>}/>
         <Route path='deleted-blog' element={user ? <DeletedBlog/> : <Navigate to={'/admin'}/>}/>
       </Route>
+      <Route path='*' element={<NotFound/>}/>
     </Routes>
   )
 }

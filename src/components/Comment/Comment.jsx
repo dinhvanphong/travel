@@ -33,7 +33,7 @@ const Comment = (props) => {
       <p className='uppercase text-center font-semibold'>bình luận</p>
 
       <div className='w-full mb-5'>
-        {blog.comments.map(i => (
+        {blog.comments && blog?.comments.map(i => (
           <div key={i._id} className='w-full min-h-5 flex items-center gap-3 my-4 p-2 rounded-md bg-primary/5'>
             <div className='w-11 h-11 border border-primary rounded-[50%] overflow-hidden p-1 bg-[#efecec]'>
               <img className='w-full h-full object-cover' src={imgUser} alt="user" />

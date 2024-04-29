@@ -18,12 +18,12 @@ const blogSlice = createSlice({
       success: false,
       error: false
     },
-    blogDetail: {
-      blog: null,
-      isFetching: false,
-      success: false,
-      error: false
-    },
+    // blogDetail: {
+    //   blog: null,
+    //   isFetching: false,
+    //   success: false,
+    //   error: false
+    // },
     blogMienBac: {
       blogs: null,
       isFetching: false,
@@ -82,19 +82,19 @@ const blogSlice = createSlice({
       state.createBlog.error = true
     },
     // Blog detail
-    fetchBlogDetailStart: (state) => {
-      state.blogDetail.isFetching = true
-    },
-    fetchBlogDetailSuccess: (state, action) => {
-      state.blogDetail.isFetching = false
-      state.blogDetail.success = true
-      state.blogDetail.blog = action.payload
-    },
-    fetchBlogDetailError: (state) => {
-      state.blogDetail.isFetching = false
-      state.blogDetail.success = false
-      state.blogDetail.error = true
-    },
+    // fetchBlogDetailStart: (state) => {
+    //   state.blogDetail.isFetching = true
+    // },
+    // fetchBlogDetailSuccess: (state, action) => {
+    //   state.blogDetail.isFetching = false
+    //   state.blogDetail.success = true
+    //   state.blogDetail.blog = action.payload
+    // },
+    // fetchBlogDetailError: (state) => {
+    //   state.blogDetail.isFetching = false
+    //   state.blogDetail.success = false
+    //   state.blogDetail.error = true
+    // },
     // Blog mienbac
     fetchBlogMienBacStart: (state) => {
       state.blogMienBac.isFetching = true
@@ -144,7 +144,7 @@ export const {
   fetchListBlogStart, fetchListBlogSuccess, fetchListBlogError,
   fetchListBlogDeleteError, fetchListBlogDeleteStart, fetchListBlogDeleteSuccess,
   createBlogError, createBlogStart, createBlogSuccess,
-  fetchBlogDetailError, fetchBlogDetailStart, fetchBlogDetailSuccess,
+  // fetchBlogDetailError, fetchBlogDetailStart, fetchBlogDetailSuccess,
   fetchBlogMienBacError, fetchBlogMienBacStart, fetchBlogMienBacSuccess,
   fetchBlogMienNamError, fetchBlogMienNamStart, fetchBlogMienNamSuccess,
   fetchBlogMienTrungError, fetchBlogMienTrungStart, fetchBlogMienTrungSuccess

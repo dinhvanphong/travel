@@ -2,8 +2,8 @@
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import { getAllBlogsApi } from '~/redux/apiRequest'
-import { useEffect } from 'react'
+// import { getAllBlogsApi } from '~/redux/apiRequest'
+// import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -60,14 +60,14 @@ function SlideItem(props) {
 }
 
 const SliderHome = () => {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const listBlogs = useSelector((state) => state.blog.listBlogs.allBlogs)
 
   let newListBlog = listBlogs.slice()
   newListBlog = newListBlog.reverse()
-  useEffect(() => {
-    getAllBlogsApi(dispatch)
-  }, [])
+  // useEffect(() => {
+  //   getAllBlogsApi(dispatch)
+  // }, [])
   const settings = {
     className: 'center',
     infinite: true,

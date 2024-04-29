@@ -3,14 +3,13 @@ import {
   loginFailed, loginStart, loginSuccess,
   registerSuccess, registerFailed, registerStart,
   logoutStart, logoutFailed, logoutSuccess,
-  loginUserFailed, loginUserSuccess, loginUserStart,
-  logoutUserFailed, logoutUserStart, logoutUserSuccess
+  loginUserFailed, loginUserSuccess, loginUserStart, logoutUserFailed, logoutUserStart, logoutUserSuccess
 } from './authSlice'
 import {
   fetchListBlogError, fetchListBlogStart, fetchListBlogSuccess,
   createBlogError, createBlogStart, createBlogSuccess,
   fetchListBlogDeleteError, fetchListBlogDeleteStart, fetchListBlogDeleteSuccess,
-  fetchBlogDetailError, fetchBlogDetailStart, fetchBlogDetailSuccess,
+  // fetchBlogDetailError, fetchBlogDetailStart, fetchBlogDetailSuccess,
   fetchBlogMienBacError, fetchBlogMienBacStart, fetchBlogMienBacSuccess,
   fetchBlogMienNamError, fetchBlogMienNamStart, fetchBlogMienNamSuccess,
   fetchBlogMienTrungError, fetchBlogMienTrungStart, fetchBlogMienTrungSuccess
@@ -116,23 +115,13 @@ export const getAllBlogsDeleteApi =async(dispatch) => {
   }
 }
 // ok
-// export const getAllBlogsDeleteApi =async(dispatch) => {
-//   dispatch(fetchBlogDeleteStart())
-//   try {
-//     const res = await axios.get(`${API_ROOT}/v1/blogs/deleted`)
-//     dispatch(fetchBlogDeleteSuccess(res.data))
-//   } catch (error) {
-//     dispatch(fetchBlogDeleteError())
-//   }
-// }
-// ok
-export const getBlogDetailApi =async(dispatch, slug) => {
-  dispatch(fetchBlogDetailStart())
+export const getBlogDetailApi =async(slug) => {
+
   try {
     const res = await axios.get(`${API_ROOT}/v1/blogs/${slug}`)
-    dispatch(fetchBlogDetailSuccess(res.data))
+    return res.data
   } catch (error) {
-    dispatch(fetchBlogDetailError())
+    console.log(error)
   }
 }
 // ok

@@ -1,7 +1,11 @@
 import NewBlogs from '~/components/NewBlogs/NewBlogs'
+import { useEffect, useState } from 'react'
+
+
 import SliderHome from '~/components/Slider/Slider'
 import ImgTest from '~/img/du-lich.webp'
 import ImgTest1 from '~/img/test.jpg'
+import { getAllBlogsApi } from '~/redux/apiRequest'
 import {
   FaYoutube,
   FaFacebookF,
@@ -13,7 +17,7 @@ import {
 import { AiFillDingtalkCircle, AiFillCrown, AiFillSecurityScan } from 'react-icons/ai'
 import ImgFooterBg from '~/img/footer-bg.png'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 const dataNavbar= [
   {
@@ -63,6 +67,13 @@ const dataSocial= [
 const Home = () => {
   const backgroundImageUrl = `url(${ImgFooterBg})`
   const listBlogs = useSelector((state) => state.blog.listBlogs.allBlogs)
+  const dispatch = useDispatch()
+
+
+  useEffect(() => {
+    console.log('1')
+    getAllBlogsApi(dispatch)
+  }, [])
 
   return (
     <div className='mt-[100px] w-[1400px] max-w-full m-auto min-h-80 mb-10 bg-[#040404b6] bg-fixed bg-bottom' style={{ backgroundImage: backgroundImageUrl }}>
