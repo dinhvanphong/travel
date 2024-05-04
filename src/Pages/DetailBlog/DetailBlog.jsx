@@ -8,9 +8,7 @@ const DetailBlog = () => {
   const [toggle, setToggle] = useState(true)
   const [blog, setBlog] = useState({})
 
-
   useEffect(() => {
-    console.log('23')
     getBlogDetailApi(slug)
       .then((data) => setBlog(data))
   }, [slug, toggle])

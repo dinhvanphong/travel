@@ -102,6 +102,19 @@ export const getAllBlogsPaginationApi = async(page, limit) => {
     console.log(error)
   }
 }
+
+export const getFindBlogApi = async(value) => {
+  try {
+    const res = await axios.get(`${API_ROOT}/v1/blogs/find`, {
+      params: {
+        q: value
+      }
+    })
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
 // ok
 export const getAllBlogsDeleteApi =async() => {
   try {

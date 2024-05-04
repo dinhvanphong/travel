@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import SliderHome from '~/components/Slider/Slider'
 import ImgTest from '~/img/du-lich.webp'
 import ImgTest1 from '~/img/test.jpg'
-import { getAllBlogsApi } from '~/redux/apiRequest'
+import { getAllBlogsApi, getFindBlogApi } from '~/redux/apiRequest'
 import {
   FaYoutube,
   FaFacebookF,
@@ -77,6 +77,8 @@ const Home = () => {
     console.log('1')
     getAllBlogsApi(dispatch)
   }, [])
+
+
 
   return (
     <div className='mt-[100px] w-[1400px] max-w-full m-auto min-h-80 mb-10 bg-[#040404b6] bg-fixed bg-bottom' style={{ backgroundImage: backgroundImageUrl }}>
