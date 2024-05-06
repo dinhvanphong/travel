@@ -4,8 +4,7 @@ import { useEffect, useState } from 'react'
 
 import SliderHome from '~/components/Slider/Slider'
 import ImgTest from '~/img/du-lich.webp'
-import ImgTest1 from '~/img/test.jpg'
-import { getAllBlogsApi, getFindBlogApi } from '~/redux/apiRequest'
+import { getAllBlogsApi } from '~/redux/apiRequest'
 import {
   FaYoutube,
   FaFacebookF,
@@ -74,11 +73,8 @@ const Home = () => {
 
 
   useEffect(() => {
-    console.log('1')
     getAllBlogsApi(dispatch)
   }, [])
-
-
 
   return (
     <div className='mt-[100px] w-[1400px] max-w-full m-auto min-h-80 mb-10 bg-[#040404b6] bg-fixed bg-bottom' style={{ backgroundImage: backgroundImageUrl }}>
@@ -100,17 +96,8 @@ const Home = () => {
       <div className='bg-white flex gap-5'>
         <NewBlogs/>
         <div className='w-[100%] min-h-[600px] flex items-center relative'>
-          <div className='w-[620px] h-[550px] absolute right-0 rounded-2xl overflow-hidden'>
-            <img className='w-full h-full object-cover' src={ImgTest} alt="dasd" />
-          </div>
-          <div className='w-[620px] min-h-[480px] bg-primary p-8 absolute right-[40%] rounded-2xl opacity-90'>
-            <p className='text-xl font-bold text-white mb-4'>Travel là đối tác lý tưởng đồng hành cùng bạn. </p>
-            <h2 className='text-5xl mb-4 text-yellow-400'>Chúng tôi tự hào khi giúp bạn khám phá những địa điểm tuyệt vời nhất khắp Việt Nam</h2>
-            <p className='text-white'>
-              - Tận hưởng danh lam thắng cảnh tuyệt vời, bãi biển tuyệt diệu, và các đô thị hiện đại với danh sách không ngừng các điểm đến hấp dẫn. <br/>
-              - Trước khi quyết định, hãy chiêm ngưỡng những hình ảnh đẹp như tranh của những địa điểm bạn sắp đến, giúp bạn dễ dàng lựa chọn nơi phù hợp với mong muốn cá nhân của mình. <br/>
-              - Từ những chuyến du lịch thám hiểm đến những kỳ nghỉ thư giãn, chúng tôi mang đến cho bạn nhiều lựa chọn đa dạng phù hợp với mọi sở thích và ngân sách.
-            </p>
+          <div className='w-[1000px] h-[550px] absolute right-[0%] rounded-2xl overflow-hidden'>
+            <img className='w-full h-full object-cover' src={ImgTest}/>
           </div>
         </div>
       </div>
@@ -128,6 +115,15 @@ const Home = () => {
               </li>
             ))}
           </ul>
+          <div className='w-full min-h-[480px] mt-4 bg-primary p-8 rounded-2xl opacity-90'>
+            <p className='text-xl font-bold text-white mb-4'>Travel là đối tác lý tưởng đồng hành cùng bạn. </p>
+            <h2 className='text-5xl mb-4 text-yellow-400'>Chúng tôi tự hào khi giúp bạn khám phá những địa điểm tuyệt vời nhất khắp Việt Nam</h2>
+            <p className='text-white'>
+              - Tận hưởng danh lam thắng cảnh tuyệt vời, bãi biển tuyệt diệu, và các đô thị hiện đại với danh sách không ngừng các điểm đến hấp dẫn. <br/>
+              - Trước khi quyết định, hãy chiêm ngưỡng những hình ảnh đẹp như tranh của những địa điểm bạn sắp đến, giúp bạn dễ dàng lựa chọn nơi phù hợp với mong muốn cá nhân của mình. <br/>
+              - Từ những chuyến du lịch thám hiểm đến những kỳ nghỉ thư giãn, chúng tôi mang đến cho bạn nhiều lựa chọn đa dạng phù hợp với mọi sở thích và ngân sách.
+            </p>
+          </div>
         </div>
 {/* ================================== */}
         <div className='flex-1'>
@@ -148,7 +144,7 @@ const Home = () => {
               </ul>
             </div>
             <div>
-              <img src={ImgTest1} alt="Ảnh đẹp" />
+              <img src={ImgTest} alt="Ảnh đẹp" />
             </div>
           </div>
         </div>
