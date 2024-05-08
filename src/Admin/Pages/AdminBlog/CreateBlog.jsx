@@ -79,6 +79,11 @@ const AdminBlog = () => {
     setLoading(false)
   }
 
+  const handleEditImg = (img) => {
+    const listImg = blog.imgList.filter(i => i !== img)
+    setBlog({ ...blog, imgList: listImg })
+  }
+
 
   return (
     <div className='w-[80%] px-5 py-5 h-[100vh] overflow-auto'>
@@ -169,8 +174,16 @@ const AdminBlog = () => {
           ref={inputRef}
           onChange={() => uploadFiles(inputRef.current.files)}
         />
+        <div className='flex flex-wrap gap-2'>
+          {blog.imgList.map(i => (
+            <div key={i} className='w-[200px] h-[250px] relative'>
+              <p onClick={() => handleEditImg(i)} className='absolute top-0 right-1 text-2xl font-bold cursor-pointer text-red-600'>x</p>
+              <img src={i} alt={i} className='w-full h-full object-cover' />
+            </div>
+          ))}
+        </div>
 
-        <div className='flex items-center justify-center'>
+        <div className='flex items-center justify-center mt-4'>
           {loadingImg &&
             <button disabled type="button" className="text-white bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 inline-flex items-center">
               <svg aria-hidden="true" role="status" className="inline w-4 h-4 me-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

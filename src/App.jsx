@@ -85,7 +85,6 @@ function App() {
       <Route path='/search/:title' element={<MainLayoutDetail/>}>
         <Route index element={<Search/>}/>
       </Route>
-      <Route path='*' element={<NotFound/>}/>
 
       <Route path='/:slug' element={<MainLayoutDetail/>}>
         <Route index element={<DetailBlog/>}/>
@@ -100,6 +99,7 @@ function App() {
         <Route path='blog-list' element={user ? <BlogList/> : <Navigate to={'/admin'}/>}/>
         <Route path='deleted-blog' element={user ? <DeletedBlog/> : <Navigate to={'/admin'}/>}/>
       </Route>
+      <Route path='*' element={<NotFound/>}/>
     </Routes>
   )
 }

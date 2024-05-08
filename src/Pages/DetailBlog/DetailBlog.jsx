@@ -1,16 +1,23 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import Comment from '~/components/Comment/Comment'
 import { getBlogDetailApi } from '~/redux/apiRequest'
 
 const DetailBlog = () => {
   const { slug } = useParams()
+  const navigate = useNavigate()
   const [toggle, setToggle] = useState(true)
   const [blog, setBlog] = useState({})
 
   useEffect(() => {
     getBlogDetailApi(slug)
-      .then((data) => setBlog(data))
+      .then((data) => {
+        if (data === null) {
+          navigate('/')
+        } else {
+          setBlog(data)
+        }
+      })
   }, [slug, toggle])
 
   return (

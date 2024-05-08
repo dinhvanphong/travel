@@ -19,9 +19,6 @@ const TableBlogList = () => {
       .then(data => setListBlogPagination(data))
   }, [page, blog])
 
-  console.log(listBlogPagination)
-
-
   const handleClickEdit = (i) => {
     setBlog(i)
     setIsOpenModalEdit(true)
