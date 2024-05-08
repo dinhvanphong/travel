@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 
 import SliderHome from '~/components/Slider/Slider'
 import ImgTest from '~/img/du-lich.webp'
+import ImgCanhDong from '~/img/canhdong.jpg'
 import { getAllBlogsApi } from '~/redux/apiRequest'
 import {
   FaYoutube,
@@ -97,7 +98,7 @@ const Home = () => {
         <NewBlogs/>
         <div className='w-[100%] min-h-[600px] flex items-center relative'>
           <div className='w-[1000px] h-[550px] absolute right-[0%] rounded-2xl overflow-hidden'>
-            <img className='w-full h-full object-cover' src={ImgTest}/>
+            <img className='w-full h-full object-cover' src={ImgCanhDong}/>
           </div>
         </div>
       </div>
