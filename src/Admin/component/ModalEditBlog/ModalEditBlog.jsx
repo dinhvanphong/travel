@@ -1,9 +1,14 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import TextArea from '../TextArea/TextArea'
 import { updateBlogApi } from '~/redux/apiRequest'
+import axios from 'axios'
+
 
 const ModalEditBlog = (props) => {
   const { blogEdit, setBlogEdit, setIsOpenModalEdit } = props
+  const inputRef = useRef()
+
+  const [loadingImg, setLoadingImg] = useState(false)
   const [loading, setLoading] = useState(false)
   const [blog, setBlog] = useState({
     title:blogEdit.title,
@@ -13,6 +18,37 @@ const ModalEditBlog = (props) => {
     zones: blogEdit.zones,
     imgList: blogEdit.imgList
   })
+
+  const uploadFiles =async ( files ) => {
+    if (files.length > 0) {
+      setLoadingImg(true)
+      const CLOUD_NAME = 'dwjfx8vv7'
+      const PRESET_NAME = 'travel'
+      const FOLDER_NAME = 'travel'
+      const urls = []
+      const API = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
+
+      const formData = new FormData()
+      formData.append('upload_preset', PRESET_NAME)
+      formData.append('folder', FOLDER_NAME)
+
+      for (const file of files) {
+        formData.append('file', file)
+        const response = await axios.post(API, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        urls.push(response.data.url)
+      }
+      const newListImg = blog.imgList.concat(urls)
+      setBlog({ ...blog, imgList: newListImg })
+      setLoadingImg(false)
+      return
+    }
+    return
+  }
+
   const handleUpdate =async (e) => {
     e.preventDefault()
     setLoading(true)
@@ -23,7 +59,8 @@ const ModalEditBlog = (props) => {
   }
 
   const handleEditImg = (img) => {
-    console.log(img)
+    const listImg = blog.imgList.filter(i => i !== img)
+    setBlog({ ...blog, imgList: listImg })
   }
   return (
     <div id="static-modal" data-modal-backdrop="static" tabIndex="-1" aria-hidden="true" className=" overflow-x-hidden fixed top-0 right-0 left-0 px-2 z-50 justify-center items-center w-full md:inset-0 h-[100vh] bg-[#1e1e1e6f]">
@@ -113,14 +150,21 @@ const ModalEditBlog = (props) => {
                 </div>
                 <div className='flex flex-wrap gap-2'>
                   {blog.imgList.map(i => (
-                    <div key={i} className='w-[300px] relative'>
-                      <p onClick={() => handleEditImg(i)} className='absolute top-2 right-2 text-2xl font-bold cursor-pointer'>x</p>
+                    <div key={i} className='w-[200px] h-[200px] relative'>
+                      <p onClick={() => handleEditImg(i)} className='absolute top-0 right-1 text-2xl font-bold cursor-pointer text-red-600'>x</p>
                       <img src={i} alt={i} className='w-full h-full object-cover' />
                     </div>
                   ))}
                 </div>
-                <label htmlFor="">Them anh</label>
-                <input type="file" />
+                <label className="block mb-2 text-sm font-medium text-gray-900 mt-5" htmlFor="multiple_files">Thêm ảnh <span className='text-red-600'>*</span></label>
+                <input
+                  className="block mb-6 w-[30%] text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
+                  id="multiple_files"
+                  type="file"
+                  multiple
+                  ref={inputRef}
+                  onChange={() => uploadFiles(inputRef.current.files)}
+                />
               </div>
               {/* Button */}
               <div className='w-full  flex items-center justify-center mt-5'>
@@ -134,7 +178,12 @@ const ModalEditBlog = (props) => {
                     Đang cập nhật...
                   </button>
                   :
-                  <button type='submit' className='w-full sm:w-auto px-4 py-2 bg-primary text-white rounded-md dark:bg-primary/80 dark:hover:bg-primary'>Cập nhật</button>
+                  loadingImg
+                    ?
+                    <button type='submit' className='w-full sm:w-auto px-4 py-2 bg-primary text-white rounded-md dark:bg-primary/80 dark:hover:bg-primary'>Đang tải ảnh...</button>
+                    :
+                    <button type='submit' className='w-full sm:w-auto px-4 py-2 bg-primary text-white rounded-md dark:bg-primary/80 dark:hover:bg-primary'>Cập nhật</button>
+
                 }
               </div>
             </div>

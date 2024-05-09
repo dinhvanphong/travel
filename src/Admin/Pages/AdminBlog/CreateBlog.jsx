@@ -81,7 +81,7 @@ const AdminBlog = () => {
 
   const handleEditImg = (img) => {
     const listImg = blog.imgList.filter(i => i !== img)
-    setBlog({...blog, imgList: listImg})
+    setBlog({ ...blog, imgList: listImg })
   }
 
 
