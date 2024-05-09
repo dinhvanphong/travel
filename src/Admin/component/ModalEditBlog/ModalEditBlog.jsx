@@ -10,8 +10,8 @@ const ModalEditBlog = (props) => {
     time: blogEdit.time,
     description: blogEdit.description,
     note: blogEdit.note,
-    zones: blogEdit.zones
-    // imgList: []
+    zones: blogEdit.zones,
+    imgList: blogEdit.imgList
   })
   const handleUpdate =async (e) => {
     e.preventDefault()
@@ -20,6 +20,10 @@ const ModalEditBlog = (props) => {
       .then(() => setBlogEdit({}))
       .then(() => setIsOpenModalEdit(false))
     setLoading(false)
+  }
+
+  const handleEditImg = (img) => {
+    console.log(img)
   }
   return (
     <div id="static-modal" data-modal-backdrop="static" tabIndex="-1" aria-hidden="true" className=" overflow-x-hidden fixed top-0 right-0 left-0 px-2 z-50 justify-center items-center w-full md:inset-0 h-[100vh] bg-[#1e1e1e6f]">
@@ -107,6 +111,16 @@ const ModalEditBlog = (props) => {
                     </div>
                   </div>
                 </div>
+                <div className='flex flex-wrap gap-2'>
+                  {blog.imgList.map(i => (
+                    <div key={i} className='w-[300px] relative'>
+                      <p onClick={() => handleEditImg(i)} className='absolute top-2 right-2 text-2xl font-bold cursor-pointer'>x</p>
+                      <img src={i} alt={i} className='w-full h-full object-cover' />
+                    </div>
+                  ))}
+                </div>
+                <label htmlFor="">Them anh</label>
+                <input type="file" />
               </div>
               {/* Button */}
               <div className='w-full  flex items-center justify-center mt-5'>
